@@ -1,3 +1,3 @@
-(a)	//IDENTI[../CONCEL[contains(.,"Amares")]]
+(a) //IDENTI[../CONCEL[contains(.,"Amares")]]
 (b) distinct-values(//CONCEL) 
 (c) //DESARQ[../CONCEL[contains(.,"Montalegre")]] 
