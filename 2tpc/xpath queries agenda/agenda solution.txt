@@ -1,4 +1,4 @@
-(a)	//telefone[contains(.,"253")]
+(a) //telefone[contains(.,"253")]
 (b) //telefone[not(contains(.,"253"))]
 (c) //nome[contains(.,"José") or contains(.,"Maria")]
 (d) //grupo/entrada/@id
