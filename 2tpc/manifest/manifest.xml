@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE manifest SYSTEM "file:/C:/Users/Henrique/Desktop/2TPC/manifest.dtd">
+<manifest>
+    <meta>
+        <KEY_NAME>TPC2</KEY_NAME>
+        <TITLE>Trabalho para casa 2</TITLE>
+        <BEGIN_DATE>Outubro 2019</BEGIN_DATE>
+        <END_DATE>Outubro 2019</END_DATE>
+        <SUPERVISOR>
+            <name>Jose Carlos Ramalho</name>
+            <email>jcr@di.uminho.pt</email>
+        </SUPERVISOR>
+    </meta>
+    <workteam>
+        <member>
+            <name>Henrique Ribeiro</name>
+            <email>pg38415@uminho.pt</email>
+            <id>PG38415</id>
+        </member>
+    </workteam>
+    <abstract>
+        <paragraph>Entrega do segundo trabalho para casa, consiste em desenvolver um DTD schema e um XML correspondente a este manifesto e ainda uma serie de queries em XPath que resolvem exercicios de queries sobre a agenda de contactos e sobre os arqueossitios..  </paragraph>
+    </abstract>
+    <deliverables>
+        <result>
+            <name>manifest.ded</name>
+            <url></url>
+        </result>
+        <result>
+            <name>manifest.xml</name>
+            <url></url>
+        </result>
+        <result>
+            <name>Xpath ex1</name>
+            <url></url>
+        </result>
+        <result>
+            <name>Xpath ex2</name>
+            <url></url>
+        </result>
+    </deliverables>
+</manifest>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT manifest (meta,workteam,abstract,deliverables)>
+<!ELEMENT meta (KEY_NAME,TITLE,SUBTITLE?,BEGIN_DATE,END_DATE, SUPERVISOR)>
+<!ELEMENT KEY_NAME (#PCDATA)>
+<!ELEMENT TITLE (#PCDATA)>
+<!ELEMENT SUBTITLE (#PCDATA)>
+<!ELEMENT BEGIN_DATE (#PCDATA)>
+<!ELEMENT END_DATE (#PCDATA)>
+<!ELEMENT SUPERVISOR (name, email, website?)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT website (#PCDATA) >
+
+<!ELEMENT workteam (member)+>   
+<!ELEMENT member (name, email, id, website?) >
+<!ELEMENT id (#PCDATA) >
+
+<!ELEMENT abstract (paragraph)+>
+<!ELEMENT paragraph (#PCDATA)*>
+
+<!ELEMENT deliverables (result)+>
+<!ELEMENT result (name,url)>
+<!ELEMENT url (#PCDATA)>
