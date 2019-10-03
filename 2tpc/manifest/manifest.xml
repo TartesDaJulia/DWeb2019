@@ -24,19 +24,20 @@
     <deliverables>
         <result>
             <name>manifest.ded</name>
-            <url></url>
+            <url>https://github.com/TartesDaJulia/DWeb2019/blob/master/2tpc/manifest/manifest.dtd</url>
         </result>
         <result>
             <name>manifest.xml</name>
-            <url></url>
+            <url>https://github.com/TartesDaJulia/DWeb2019/blob/master/2tpc/manifest/manifest.xml</url>
         </result>
         <result>
             <name>Xpath ex1</name>
-            <url></url>
+            <url>https://github.com/TartesDaJulia/DWeb2019/blob/master/2tpc/xpath%20queries%20agenda/agenda%20solution.txt</url>
         </result>
         <result>
             <name>Xpath ex2</name>
-            <url></url>
+            <url>https://github.com/TartesDaJulia/DWeb2019/blob/master/2tpc/xpath%20queries%20arq/arq%20solution.txt
+            </url>
         </result>
     </deliverables>
 </manifest>
