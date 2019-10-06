@@ -11,13 +11,17 @@
 <!ELEMENT email (#PCDATA)>
 <!ELEMENT website (#PCDATA) >
 
-<!ELEMENT workteam (member)+>   
+<!ELEMENT workteam (member+)>   
 <!ELEMENT member (name, email, id, website?) >
 <!ELEMENT id (#PCDATA) >
 
-<!ELEMENT abstract (paragraph)+>
-<!ELEMENT paragraph (#PCDATA)*>
+<!ELEMENT abstract (paragraph+)>
+<!ELEMENT paragraph (#PCDATA|b|i|u|url)* >
+<!ELEMENT b (#PCDATA) >
+<!ELEMENT i (#PCDATA) >
+<!ELEMENT u (#PCDATA) >
+<!ELEMENT url (#PCDATA) >
 
-<!ELEMENT deliverables (result)+>
+
+<!ELEMENT deliverables (result+)>
 <!ELEMENT result (name,url)>
-<!ELEMENT url (#PCDATA)>
