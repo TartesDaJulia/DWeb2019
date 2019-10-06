@@ -1,3 +1,5 @@
 (a) //IDENTI[../CONCEL[contains(.,"Amares")]]
 (b) distinct-values(//CONCEL) 
 (c) //DESARQ[../CONCEL[contains(.,"Montalegre")]] 
+(d) count(//IDENTI[../CONCEL[contains(.,"Amares")]])
+
