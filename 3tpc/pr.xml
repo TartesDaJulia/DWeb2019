@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE manifest SYSTEM "Project%20record.dtd">
+<manifest>
+    <meta>
+        <keyname>TPC3</keyname>
+        <title>Trabalho para casa 3</title>
+        <subtitle></subtitle>
+        <bdate>Outubro 2019</bdate>
+        <edate>Outubro 2019</edate>
+        <supervisor>
+            <name>Jose Carlos Ramalho</name>
+            <email>jcr@di.uminho.pt</email>
+            <homepage>www.di.uminho.pt/~jcr/</homepage>
+        </supervisor>
+    </meta>
+    <workteam>
+        <member>
+            <identifier>PG38415</identifier>
+            <name>Henrique Ribeiro</name>
+            <email>pg38415@uminho.pt</email>
+            <photo path="img.jpg"/>
+        </member>
+    </workteam>
+    <abstract>
+        <p>Trabalho para casa 3 consiste em desenvolver uma xsl para o project record desenvolvido na aula 3 de maneira a construir a página de html associada ao xml do project record. </p>
+        <p>Consiste ainda em desenvolver uma xsl para o arq.xml semelhante ao criado na aula, consistindo de links ligando as paginas entre si. </p>
+    </abstract>
+    <deliverables>
+        <deliverable path="pr.xml">pr.xml</deliverable>
+        <deliverable path="pr.xsl">pr.xsl</deliverable>
+        <deliverable path="arq.xsl">arq.xsl</deliverable>
+    </deliverables>
+</manifest>

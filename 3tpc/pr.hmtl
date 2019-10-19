@@ -1,0 +1,166 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>
+         Project Record
+         
+      </title>
+      <meta charset="UTF-8">
+   </head>
+   <body>
+      <h1>Project Record</h1>
+      <ol>
+         
+         <table>
+            <tr>
+               <th>Keyname:</th>
+               <td>TPC3</td>
+            </tr>
+            <tr>
+               <th>Title:</th>
+               <td>Trabalho para casa 3</td>
+            </tr>
+            <tr>
+               <th>Keyname:</th>
+               <td>Outubro 2019</td>
+            </tr>
+            <tr>
+               <th>Keyname:</th>
+               <td>Outubro 2019</td>
+            </tr>
+            <tr>
+               <th>Supervisor:</th>
+               <td>
+                  <p></p>
+                  <p></p>
+                  <p></p>
+               </td>
+            </tr>
+            <tr>
+               <th>Workteam:</th>
+               <td>
+                  <ul>
+                     TPC3
+                     Trabalho para casa 3
+                     
+                     Outubro 2019
+                     Outubro 2019
+                     
+                     Jose Carlos Ramalho
+                     jcr@di.uminho.pt
+                     www.di.uminho.pt/~jcr/
+                     
+                     
+                  </ul>
+               </td>
+            </tr>
+         </table>
+         <h2>Abstract</h2>
+         <h3>Deliverables:</h3>
+         <ul>
+            TPC3
+            Trabalho para casa 3
+            
+            Outubro 2019
+            Outubro 2019
+            
+            Jose Carlos Ramalho
+            jcr@di.uminho.pt
+            www.di.uminho.pt/~jcr/
+            
+            
+         </ul>
+         
+         <li>
+            <p></p>
+            <p></p>
+            <p></p>
+         </li>
+         
+         Trabalho para casa 3 consiste em desenvolver uma xsl para o project record desenvolvido
+         na aula 3 de maneira a construir a página de html associada ao xml do project record.
+         
+         Consiste ainda em desenvolver uma xsl para o arq.xml semelhante ao criado na aula,
+         consistindo de links ligando as paginas entre si. 
+         
+         
+         <li><a href="">pr.xml pr.xsl arq.xsl</a></li>
+         
+      </ol>
+   </body>
+</html>
+
+<table>
+   <tr>
+      <th>Keyname:</th>
+      <td>TPC3</td>
+   </tr>
+   <tr>
+      <th>Title:</th>
+      <td>Trabalho para casa 3</td>
+   </tr>
+   <tr>
+      <th>Keyname:</th>
+      <td>Outubro 2019</td>
+   </tr>
+   <tr>
+      <th>Keyname:</th>
+      <td>Outubro 2019</td>
+   </tr>
+   <tr>
+      <th>Supervisor:</th>
+      <td>
+         <p></p>
+         <p></p>
+         <p></p>
+      </td>
+   </tr>
+   <tr>
+      <th>Workteam:</th>
+      <td>
+         <ul>
+            TPC3
+            Trabalho para casa 3
+            
+            Outubro 2019
+            Outubro 2019
+            
+            Jose Carlos Ramalho
+            jcr@di.uminho.pt
+            www.di.uminho.pt/~jcr/
+            
+            
+         </ul>
+      </td>
+   </tr>
+</table>
+<h2>Abstract</h2>
+<h3>Deliverables:</h3>
+<ul>
+   TPC3
+   Trabalho para casa 3
+   
+   Outubro 2019
+   Outubro 2019
+   
+   Jose Carlos Ramalho
+   jcr@di.uminho.pt
+   www.di.uminho.pt/~jcr/
+   
+   
+</ul>
+
+<li>
+   <p></p>
+   <p></p>
+   <p></p>
+</li>
+
+Trabalho para casa 3 consiste em desenvolver uma xsl para o project record desenvolvido
+na aula 3 de maneira a construir a página de html associada ao xml do project record.
+
+Consiste ainda em desenvolver uma xsl para o arq.xml semelhante ao criado na aula,
+consistindo de links ligando as paginas entre si. 
+
+
+<li><a href="">pr.xml pr.xsl arq.xsl</a></li>
