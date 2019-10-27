@@ -3,7 +3,6 @@
     version="2.0">
     
     <xsl:output method="xml" indent="yes"/>
-    
     <xsl:template match="doc">
         <xsl:result-document href="data/doc{count(preceding-sibling::*)+1}">
             <xsl:processing-instruction name="xml-stylesheet">type="text/xsl" href="doc2html.xsl"</xsl:processing-instruction>
