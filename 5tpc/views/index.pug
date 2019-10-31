@@ -1,0 +1,47 @@
+extends layout 
+block content 
+    .w3-container 
+        .w3-card-4
+            header.w3-container.w3-indigo
+                h3 Novo aluno
+            .w3-container
+                form.w3-container(action='/alunos' method='POST')
+                    label.w3-indigo
+                        b Identificador
+                    input.w3-input.w3-border.w3-light-grey(type='text' name='identificador')
+                    label.w3-indigo
+                        b Nome
+                    input.w3-input.w3-border.w3-light-grey(type='text' name='nome')
+                    label.w3-indigo
+                        b Curso
+                    input.w3-input.w3-border.w3-light-grey(type='text' name='curso')
+                    label.w3-indigo
+                        b Notas
+                    input.w3-input.w3-border.w3-light-grey(type='text' name='notas')
+                    input.w3-btn.w3-blue-grey(type='submit' value='Adicionar')
+        .w3-card-4
+            header.w3-container.w3-indigo
+                h3 Lista de alunos
+            .w3-container
+                table.w3-table-all
+                    tr 
+                        th Identificador
+                        th Nome
+                        th Curso 
+                        th Notas
+                    each i in lista 
+                        tr 
+                            td= i.identificador
+                            td= i.nome
+                            td= i.curso
+                            td 
+                                ul
+                                    each n in i.notas 
+                                        table
+                                            tr
+                                                td=n.indicador
+                                                td=n.nota
+                            td 
+                                button.w3-button.w3-circle.w3-blue-grey(onclick="apagaItem('" + i.id + "')") Apagar
+            footer.w3-container.w3-indigo
+                address Gerado por Lista de Alunos

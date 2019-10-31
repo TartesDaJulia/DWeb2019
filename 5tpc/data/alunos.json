@@ -1,0 +1,48 @@
+[
+    {
+        "identificador" : "1",
+        "nome": "Eduardo Tomás",
+        "curso": "5º ano",
+        "notas": [
+            {
+                "indicador":"História",
+                "nota":"Muito Bom"
+            },
+            {
+                "indicador":"Inglês",
+                "nota":"Muito Bom"
+            },
+            {
+                "indicador":"Português",
+                "nota":"Satisfaz"
+            }
+        ]
+    },
+    {
+        "identificador" : "2",
+        "nome": "Henrique Ribeiro",
+        "curso": "MEI",
+        "notas": [
+            {
+                "indicador":"TP1",
+                "nota":"15"
+            }
+        ]
+    },
+    {
+        "identificador" : "3",
+        "nome": "Joana Filipa",
+        "curso": "MEI",
+        "notas": [
+            {
+                "indicador":"TP1",
+                "nota":"15"
+            },
+            {
+                "indicador":"TP2",
+                "nota":"16"
+            }
+        ]
+    }
+
+]
