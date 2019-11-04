@@ -1,25 +1,25 @@
 [
     {
         "identificador" : "1",
-        "nome": "Eduardo Tomás",
-        "curso": "5º ano",
+        "nome": "Eduardo",
+        "curso": "LCC",
         "notas": [
             {
-                "indicador":"História",
-                "nota":"Muito Bom"
+                "indicador":"TP1",
+                "nota":"13"
             },
             {
-                "indicador":"Inglês",
-                "nota":"Muito Bom"
+                "indicador":"TP2",
+                "nota":"17"
             },
             {
-                "indicador":"Português",
-                "nota":"Satisfaz"
+                "indicador":"TP3",
+                "nota":"13"
             }
         ]
     },
     {
-        "identificador" : "2",
+        "identificador" : "TP1",
         "nome": "Henrique Ribeiro",
         "curso": "MEI",
         "notas": [
@@ -31,7 +31,7 @@
     },
     {
         "identificador" : "3",
-        "nome": "Joana Filipa",
+        "nome": "Joana",
         "curso": "MEI",
         "notas": [
             {
