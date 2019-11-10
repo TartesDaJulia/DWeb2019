@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    .w3-container
+        h1 Lista de filmes de PRI 2019
+        table.w3-table-all 
+            tr 
+                th Titulo
+                th Ano
+            each filme in lista 
+                tr 
+                    td= filme.title
+                    td= filme.year

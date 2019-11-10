@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .w3-container 
+  h1 Inserção de um filme 
+  form.w3-container(action="/filmes" method="post")
+    label Nome :
+    input.w3-input(type="text" name="title")
+    label Ano :
+    input.w3-input(type="text" name="year")
+    input.w3-input(type="submit" value="Enviar")
