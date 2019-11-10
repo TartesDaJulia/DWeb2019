@@ -5,7 +5,13 @@ var myBD = __dirname + "/../data/alunos.json";
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  jsonfile.readFile(myBD, (erro,alunos ) => {
+    if(!erro) {
+      res.render('index', {lista:alunos})    }
+    else {
+      res.redirect('error', {erro:alunos})
+    }
+  })
 });
 
 router.get('/alunos', function (req,res) {
