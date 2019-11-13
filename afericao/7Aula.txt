@@ -1,0 +1,9 @@
+Servidor para uma API de dados (compositores) http://www4.di.uminho.pt/~jcr/Transfers/datasets/compositores.xml
+
+GET 
+	/compositores				-> id\nome\datanasc\dataObito\periodo
+	/compositores?periodo=x		
+	/compositores?ano=y				y>dataNasc && y<dataObito
+	/compositores?periodo?x&ano=b
+			req.query.periodo
+			req.query.ano

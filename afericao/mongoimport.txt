@@ -1,0 +1,1 @@
+mongoimport -d pri2019 -c compositores --jsonArray compositores.json

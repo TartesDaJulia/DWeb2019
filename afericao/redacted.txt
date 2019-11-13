@@ -1,0 +1,17 @@
+router.get('/', function(req,res,next) {
+  if(req.query.periodo && req.query.ano) {
+    Compositores.consultarPereAno(req.query.ano)
+    .then(dados=> res.jsonp(dados))
+    .catch(erro=>res.status(500).jsonp(erro))
+  }
+  if(req.query.ano){
+    Compositores.consultarAno(req.query.ano)
+      .then(dados=> res.jsonp(dados))
+      .catch(erro=>res.status(500).jsonp(erro))
+  }
+  if(req.query.periodo){
+    Compositores.consultarPer(req.query.per)
+      .then(dados=> res.jsonp(dados))
+      .catch(erro=>res.status(500).jsonp(erro))
+  }
+})
