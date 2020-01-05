@@ -1,0 +1,32 @@
+[
+    {
+        "id"            : "1",
+        "name"          : "file1",
+        "description"   : "file1 is a file that was uploaded",
+        "path"          : "/file1.txt",
+        "mimeType"      : "text/plain",
+        "size"          : "1",
+        "dateUploaded"  : "2001-01-01T00:00:01.1Z", 
+        "uploadedBy"    : "1"
+    },
+    {
+        "id"            : "2",
+        "name"          : "file2",
+        "description"   : "file2 is a file that was uploaded",
+        "path"          : "/file2.txt",
+        "mimeType"      : "text/plain",
+        "size"          : "2",
+        "dateUploaded"  : "2001-01-02T00:00:01.1Z", 
+        "uploadedBy"    : "2"
+    },
+    {
+        "id"            : "3",
+        "name"          : "file3",
+        "description"   : "file3 is a file that was uploaded",
+        "path"          : "/file3.txt",
+        "mimeType"      : "text/plain",
+        "size"          : "3",
+        "dateUploaded"  : "2001-01-03T00:00:01.1Z", 
+        "uploadedBy"    : "3"
+    }    
+]

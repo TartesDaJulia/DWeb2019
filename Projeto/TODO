@@ -1,0 +1,32 @@
+API de dados para 
+        utilizadores,
+        ficheiros,
+        publicacoes
+
+utilizadores    
+    id
+    nome
+    mail
+    pass
+    foto
+    dataNasc
+    Curso
+
+
+ficheiros
+    id
+    nome
+    dataUpload
+    uploadedBy
+    postId
+    mimeType
+    size
+
+publicacoes
+    id
+    postedBy
+    datePosted
+    postText
+    associatedFiles
+    target audience
+
