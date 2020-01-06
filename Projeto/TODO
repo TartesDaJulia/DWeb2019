@@ -1,32 +1,11 @@
-API de dados para 
-        utilizadores,
-        ficheiros,
-        publicacoes
+API SIDE:
 
-utilizadores    
-    id
-    nome
-    mail
-    pass
-    foto
-    dataNasc
-    Curso
+UPDATE POSTS COLLECTION ON MONGO!!!
+UPDATE POSTS.JSON!!!
 
+Posts controller -> find posts by event details...
 
-ficheiros
-    id
-    nome
-    dataUpload
-    uploadedBy
-    postId
-    mimeType
-    size
+Interface Side:
 
-publicacoes
-    id
-    postedBy
-    datePosted
-    postText
-    associatedFiles
-    target audience
-
+Finish main.pug, needs a lot of work...
+fill main pug with data from the API...

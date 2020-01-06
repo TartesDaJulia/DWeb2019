@@ -9,6 +9,8 @@ var userSchema = new mongoose.Schema({
     hashedPass: String,
     fotoPath:   String,
     course:     String,
+    studentId:  String,
     type:       String
 })
+
 module.exports = mongoose.model('user', userSchema)

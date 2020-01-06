@@ -12,9 +12,9 @@ module.exports.consult = id => {
         .exec()
 }
 
-module.exports.consultWithText = text => {
+module.exports.consultWithClassifier = classifier => {
     return Post
-        .findOne({postText: text})
+        .findOne({classifier: classifier})
         .exec()
 }
 
@@ -29,6 +29,14 @@ module.exports.consultByDate = date => {
         .find({datePosted: date})
         .exec()
 }
+
+module.exports.consultByDate = date => {
+    return Post
+        .find({datePosted: date})
+        .exec()
+}
+
+
 
 
 

@@ -1,0 +1,29 @@
+Aplicação Web 
+
+-Back-end: interface pessoal
+-Front-end: interface pública
+
+Utilizadores: 
+	-autenticação(,perfil individual);
+	- Grupos?
+
+1. A app terá como  base o eixo temporal - disposição de conteúdos cronológica
+2.Cada elemento de conteúdo terá 1 ou mais classificadores 
+	-base definida: desporto, disciplinas, exames,...etc
+3.A classificação vai servir como alternativa à navegação:
+	- ordenar os conteúdos por classificação
+	-dispor cronologicamente por classificação
+	-filtrar
+
+4. Uma publicação: bloco de texto, foto, ficheiro associado,...
+5.Definir um conjunto de tipos de conteúdos:
+	-Evento: tipo, titulo, data, local, descricao...
+	-Album fotografico: Titulo, data, local, descricao, foto+
+	Teste/exame: uc, data, local, ficheiro anexo
+	-Participação em evento cientifico: titulo, data, local, descrição, ficheiros anexados
+6.Importar/Exportar toda a informação
+7.Cada conteudo pode ter uma lista de comentários associados
+
+mongoexport --collection=emds --db=emd --out=emds.json
+json-server --watch emds.json
+localhost/ends/?_id.$oid=""
