@@ -1,23 +1,5 @@
 extends layout
 
-mixin timeline
-    -
-        each p in posts
-            each u in users
-                posterName=""
-                posterFoto=""
-                if(u.id == p.postedBy)
-                    posterName=u.username
-                    posterFoto=u.fotoPath
-    div.w3-container.w3-card.w3-white.w3-round.w3-margin
-        img(src="../avatar/"+posterFoto alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px")
-        span.w3-right.w3-opacity=p.datePosted
-        h4=posterName
-        hr.w3-clear
-        p=p.event.description
-
-
-
 block content
     div.w3-container.w3-content(style="max-width:1400px;margin-top:80px")
         div.w3-row
@@ -41,6 +23,20 @@ block content
                             div.w3-container.w3-padding
                                 h6.w3-opacity Social Media template by w3.css
                                 p(contenteditable="true" class="w3-border w3-padding") Status: Feeling Blue
-                                button(type="button" class="w3-button w3-theme") Post                 
-                            +timeline
+                                button(type="button" class="w3-button w3-theme") Post
+                        - posterName=""
+                        - posterFoto=""
+                        each p in posts
+                                each u in users
+                                    if u.id == p.postedBy
+                                        posterName=u.username
+                                        posterFoto=u.fotoPath
+                                        console.log(posterName+posterFoto)
+                                div.w3-container.w3-card.w3-white.w3-round.w3-margin
+                                    img(src="../avatar/"+posterFoto alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px")
+                                    span.w3-right.w3-opacity=p.datePosted
+                                    h4=posterName
+                                    hr.w3-clear
+                                    p=p.event.description
+
                                 
