@@ -30,13 +30,14 @@ module.exports.consultByDate = date => {
         .exec()
 }
 
-module.exports.consultByDate = date => {
+//find posts by event type
+//db.posts.aggregate([{$unwind: "$event"},{$match:{"event.type":"gathering"}}]).pretty()
+//caso nao funcione: transformar event em "event"
+module.exports.consultByEvent = event => {
     return Post
-        .find({datePosted: date})
+        .aggregate([{ $unwind: "$event"}, {$match: {"event.type":event}}])
         .exec()
 }
-
-
 
 
 
