@@ -1,0 +1,1 @@
+mongoimport --db testePri --collection pubs --jsonArray --file jcrpubs.json

@@ -1,0 +1,17 @@
+Exercício Nº 2: CLAV: Classificação e Avaliação da Informação Pública
+
+
+Quantos Tipologias estão catalogadas?
+75
+
+Quantos Entidades pertencem à Tipologia tip_FSS?
+5
+
+
+Em que processos a tipologia tip_FA participa como Comunicador?
+4
+
+A que tipologias pertence a entidade ent_SEF?
+
+tip_FSS 
+tip_AP
