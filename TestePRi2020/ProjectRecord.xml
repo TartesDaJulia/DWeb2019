@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE manifest SYSTEM "ProjectRecord.dtd">
+<manifest>
+    <meta>
+        <keyname>Teste</keyname>
+        <title>Teste Processamento e Representacao de Informacao 2020</title>
+        <subtitle></subtitle>
+        <bdate>13/01/2020</bdate>
+        <edate>13/01/2020</edate>
+        <supervisor>
+            <name>José Carlos Ramalho</name>
+            <email>jcr@di.uminho.pt</email>
+            <homepage>www.di.uminho.pt/~jcr/</homepage>
+        </supervisor>
+    </meta>
+    <workteam>
+        <member>
+            <identifier>PG38415</identifier>
+            <name>Henrique Ribeiro</name>
+            <email>pg38415@uminho.pt</email>
+            <photo path="img.jpg"/>
+        </member>
+    </workteam>
+    <abstract>
+        <p>Esta pasta contém o resultado do teste de PRI.</p>
+        <p>Na pasta api encontra-se a solução do primeiro exercicio assim como um ficheiro de texto chamado "mongo import command" que demonstra o comando utilizador para importar o dataset fornecido para o mongodb.</p>
+        <p>Na pasta clav encontra-se a solução do segundo exercicio assim como um ficheiro de texto chamado "Exercício Nº 2 Respostas" que contém as respostas às perguntas feitas no inicio do exercício nº2.</p>
+        <p>Para executar os servidores existentes em cada pasta basta instalar os pacotes com "npm i" e então executar com "npm start"</p>
+        <p>API corre na porta 3000 e CLAV corre na porta 3001</p>
+    </abstract>
+    <deliverables>
+        <deliverable path="/api">Exercicio 1</deliverable>
+        <deliverable path="/clav">Exercicio 2</deliverable>
+    </deliverables>
+</manifest>
