@@ -1,25 +1,33 @@
 extends layout
 
 block content
-
-    div(class="w3-container w3-content" style="max-width:1400px;margin-top:80px")
+    div.w3-container.w3-content(style="max-width:1400px;margin-top:80px")
         div.w3-row
-            div(class="w3-col m3") //left column
-                div(class="w3-card w3-round w3-white")
+            div.w3-col.m3 //left column
+                div.w3-card.w3-round.w3-white
                     .w3-container
-                    h4.w3-center My Profile
-            div(class="w3-col m7") //middle column
-                div(class="w3-row-padding")
-                    div(class="w3-col m12")
-                        div(class="w3-card w3-round w3-white")
-                            div(class="w3-container w3-padding")
-                                h6(class="w3-opacity") Social Media template by w3.css
+                        h4.w3-center My Profile
+                        p.w3-center
+                            img(src="../avatar/avatar1.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar")
+                        hr
+                        p
+                            i(class="fa fa-pencil fa-fw w3-margin-right w3-text-theme") Nome
+                        p
+                            i(class="fa fa-home fa-fw w3-margin-right w3-text-theme") Curso
+                        p
+                            i(class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme") Estudante
+            div.w3-col.m7 //middle column
+                div.w3-row-padding
+                    div.w3-col.m12
+                        div.w3-card.w3-round.w3-white
+                            div.w3-container.w3-padding
+                                h6.w3-opacity Social Media template by w3.css
                                 p(contenteditable="true" class="w3-border w3-padding") Status: Feeling Blue
                                 button(type="button" class="w3-button w3-theme") Post 
                         each p in posts
-                            div.w3-container.w3-card.w3-white.w3-round.w3-margin
-                                img(src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px")
-                                span.w3-right.w3-opacity=   p.datePosted
-                                h4=p.postedBy
-                                hr.w3-clear
-                                p=p.event.description
+                                div.w3-container.w3-card.w3-white.w3-round.w3-margin
+                                    img(src="../avatar/"+posterFoto alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px")
+                                    span.w3-right.w3-opacity=   p.datePosted
+                                    h4=posterName
+                                    hr.w3-clear
+                                    p=p.event.description
