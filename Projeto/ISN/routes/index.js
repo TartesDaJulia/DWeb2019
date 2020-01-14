@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var axios = require('axios');
-
+var fetch = require('node-fetch')
 
 getUserData = () => { axios.get('http://localhost:3001/users');}
 
@@ -14,29 +14,25 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/main', function(req, res, next) {
- /*axios.all([ getUserData(), getPostData()])
-    .then(dados => {
-      console.log(dados.data)
-      res.render('main', {posts:dados.data})
-    })
-    .catch(e => res.render('erro',{erro: e}))*/
+function get(url) {
+  return new Promise((resolve, reject) => {
+    fetch(url)
+      .then(res => res.json())
+      .then(data => resolve(data))
+      .catch(err => reject(err))
+  })
+}
 
-  var posts;
-  var users;
-  axios.get('http://localhost:3001/posts')
-    .then(dados => posts=dados.data)
-    .catch(e => res.render('erro',{erro: e}))
-  axios.get('http://localhost:3001/users')
-    .then(dados =>{
-      users=dados.data
-      res.render('main', {posts,users})
-    })
-    .catch(e => res.render('erro',{erro: e}))
-
-  
-});
-
-
+router.get('/main', (req, res) => {
+  Promise.all([
+    get(`http://localhost:3001/users`),
+    get(`http://localhost:3001/posts`)
+  ]).then(([users, posts]) =>{
+    console.log(users)
+    console.log(posts)
+    res.render('main',{users,posts})
+  })
+    .catch(err => res.render('error',{erro: err}))
+})
 
 module.exports = router;

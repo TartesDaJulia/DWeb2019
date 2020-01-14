@@ -8,7 +8,7 @@ block content
                     .w3-container
                         h4.w3-center My Profile
                         p.w3-center
-                            img(src="../avatar/avatar1.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar")
+                            img(src="../avatar/"+users[0].id+"avatar1.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar")
                         hr
                         p
                             i(class="fa fa-pencil fa-fw w3-margin-right w3-text-theme") Nome
@@ -24,18 +24,17 @@ block content
                                 h6.w3-opacity Social Media template by w3.css
                                 p(contenteditable="true" class="w3-border w3-padding") Status: Feeling Blue
                                 button(type="button" class="w3-button w3-theme") Post
-                        - posterName=""
-                        - posterFoto=""
                         each p in posts
                                 each u in users
                                     if u.id == p.postedBy
                                         posterName=u.username
                                         posterFoto=u.fotoPath
+                                        console.log('---------------------------------')
                                         console.log(posterName+posterFoto)
                                 div.w3-container.w3-card.w3-white.w3-round.w3-margin
-                                    img(src="../avatar/"+posterFoto alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px")
+                                    img(src="../avatar/" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px")
                                     span.w3-right.w3-opacity=p.datePosted
-                                    h4=posterName
+                                    h4=p.postedBy
                                     hr.w3-clear
                                     p=p.event.description
 
