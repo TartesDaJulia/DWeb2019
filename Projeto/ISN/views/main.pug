@@ -3,10 +3,10 @@ extends layout
 block content
     div.w3-container.w3-content(style="max-width:1400px;margin-top:80px")
         div.w3-row
-            div.w3-col.m3 //left column
+            div.w3-col.m3 
                 div.w3-card.w3-round.w3-white
                     .w3-container
-                        h4.w3-center My Profile
+                        h4.w3-center O meu perfil
                         p.w3-center
                             img(src="../avatar/avatar1.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar")
                         hr
@@ -15,15 +15,29 @@ block content
                         p
                             i(class="fa fa-home fa-fw w3-margin-right w3-text-theme") Curso
                         p
-                            i(class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme") Estudante
-            div.w3-col.m7 //middle column
+                            i(class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme") Data
+                br
+                div.w3-card.w3-round.w3-white
+                    .w3-container
+                        p
+                            button(type="button" class="w3-button w3-theme" style="width=100px") Os meus grupos
+                        p
+                            button(type="button" class="w3-button w3-theme" style="width=100px") Os meus eventos
+                        p
+                            button(type="button" class="w3-button w3-theme" style="width=100px") As minhas fotos
+                br
+                div.w3-card.w3-round.w3-white
+                    .w3-container 
+                            <span class="w3-tag w3-small w3-theme-l5">Photos</span>
+                            
+            div.w3-col.m7 
                 div.w3-row-padding
                     div.w3-col.m12
                         div.w3-card.w3-round.w3-white
                             div.w3-container.w3-padding
-                                h6.w3-opacity Social Media template by w3.css
-                                p(contenteditable="true" class="w3-border w3-padding") Status: Feeling Blue
-                                button(type="button" class="w3-button w3-theme") Post 
+                                h6.w3-opacity 
+                                p(contenteditable="true" class="w3-border w3-padding") Estado: A sentir-me feliz
+                                button(type="button" class="w3-button w3-theme").w3-hover-green Publicar
                         each p in posts
                                 div.w3-container.w3-card.w3-white.w3-round.w3-margin
                                     img(src="../avatar/"+posterFoto alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px")
