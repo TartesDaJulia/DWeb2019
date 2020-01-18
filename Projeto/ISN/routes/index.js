@@ -3,11 +3,11 @@ var router = express.Router();
 var axios = require('axios');
 var fetch = require('node-fetch')
 
-getUserData = () => { axios.get('http://localhost:3001/users');}
-
-getPostData = () => { axios.get('http://localhost:3001/posts');}
-
-getFileData = () => { axios.get('http://localhost:3001/files');}
+var sortByProperty = function (property) {
+  return function (x, y) {
+      return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
+  };
+};
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -28,9 +28,16 @@ router.get('/main', (req, res) => {
     get(`http://localhost:3001/users`),
     get(`http://localhost:3001/posts`)
   ]).then(([users, posts]) =>{
-    console.log(users)
-    console.log(posts)
-    res.render('main',{users,posts})
+    users=JSON.stringify(users)
+    posts=JSON.stringify(posts)
+    var data = JSON.parse("[{\"users\": "+users+"},{\"posts\":"+posts+"}]")
+    data[1].posts.sort(sortByProperty('datePosted'))
+    console.log(data)
+    console.log("------------------------------------")
+    console.log(data[1].posts[0])
+    console.log("------------------------------------")
+    console.log(data[0].users[0])
+    res.render('main',{data})
   })
     .catch(err => res.render('error',{erro: err}))
 })
