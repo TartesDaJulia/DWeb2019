@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  .w3-card-4
+    header.w3-container.w3-green
+      h2 Registe-se
+
+      form.w3-container(action="/api/ficheiros" method="post" enctype="multipart/form-data")
+      .w3-container(id='lista')
+        .w3-container
+          .w3-cell-row
+            label.w3-cell Nome:
+            input.w3-input.w3-cell.w3-border(type="text" name="nome")
+          .w3-cell-row
+            br
+            label.w3-cell Username:
+            input.w3-input.w3-cell.w3-border(type="text" name="user")
+          .w3-cell-row
+            label.w3-cell  Password:
+            input.w3-input.w3-cell.w3-border(type="text" name="user")
+          .w3-cell-row
+            label.w3-cell Curso:
+            input.w3-input.w3-cell.w3-border(type="text" name="user")
+          .w3-cell-row
+            label.w3-cell  Tipo de utilizador:
+            input.w3-input.w3-cell.w3-border(type="text" name="user")
+          .w3-cell-row
+            label.w3-cell  Password:
+            input.w3-input.w3-cell.w3-border(type="text" name="user")
+          .w3-cell-row
+            label.w3-cell Fotografia:
+            input.w3-input.w3-cell(type="file" name="imagem")
+      input.w3-input(type="submit" value="Enviar") 
+
+    footer.w3-container.w3-green
+      address Rede social, Henrique e Maria

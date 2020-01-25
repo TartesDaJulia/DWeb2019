@@ -37,4 +37,8 @@ router.get('/main', (req, res) => {
     .catch(err => res.render('error',{erro: err}))
 })
 
+router.get('/register', (req, res) => {
+    res.render('register')
+  })
+
 module.exports = router;
