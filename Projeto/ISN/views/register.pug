@@ -5,8 +5,8 @@ block content
     header.w3-container.w3-green
       h2 Registe-se
 
-      form.w3-container(action="/api/ficheiros" method="post" enctype="multipart/form-data")
-      .w3-container(id='lista')
+      form.w3-container(action="/api/users" method="post" enctype="multipart/form-data")
+      .w3-container(id='lista' style='margin-top: 10px')
         .w3-container
           .w3-cell-row
             label.w3-cell Nome:
@@ -14,23 +14,23 @@ block content
           .w3-cell-row
             br
             label.w3-cell Username:
-            input.w3-input.w3-cell.w3-border(type="text" name="user")
+            input.w3-input.w3-cell.w3-border(type="text" name="user" style='margin-top: 10px')
           .w3-cell-row
             label.w3-cell  Password:
-            input.w3-input.w3-cell.w3-border(type="text" name="user")
+            input.w3-input.w3-cell.w3-border(type="text" name="user" style='margin-top: 10px')
           .w3-cell-row
             label.w3-cell Curso:
-            input.w3-input.w3-cell.w3-border(type="text" name="user")
+            input.w3-input.w3-cell.w3-border(type="text" name="user" style='margin-top: 10px')
           .w3-cell-row
             label.w3-cell  Tipo de utilizador:
-            input.w3-input.w3-cell.w3-border(type="text" name="user")
+            input.w3-input.w3-cell.w3-border(type="text" name="user" style='margin-top: 10px')
           .w3-cell-row
-            label.w3-cell  Password:
-            input.w3-input.w3-cell.w3-border(type="text" name="user")
+            label.w3-cell  Data de nascimento:
+            input.w3-input.w3-cell.w3-border(type="text" name="user" style='margin-top: 10px')
           .w3-cell-row
             label.w3-cell Fotografia:
-            input.w3-input.w3-cell(type="file" name="imagem")
-      input.w3-input(type="submit" value="Enviar") 
+            input.w3-input.w3-cell(type="file" name="imagem" style='margin-top: 10px')
+      input.w3-input(type="submit" value="Submeter") 
 
     footer.w3-container.w3-green
       address Rede social, Henrique e Maria
