@@ -1,7 +1,11 @@
+var createError = require('http-errors');
 var express = require('express');
 var router = express.Router();
 var axios = require('axios');
 var fetch = require('node-fetch')
+var logger = require('morgan');
+var passport = require('passport')
+var bcrypt = require('bcryptjs')
 
 var sortByProperty = function (property) {
   return function (x, y) {
@@ -11,8 +15,16 @@ var sortByProperty = function (property) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Rede Estudantes' });
 });
+
+router.post('/login', passport.authenticate('local', 
+  { successRedirect: '/',
+    successFlash: 'Utilizador autenticado com sucesso!',
+    failureRedirect: '/login',
+    failureFlash: 'Utilizador ou password inválido(s)...'
+  })
+)
 
 function get(url) {
   return new Promise((resolve, reject) => {
@@ -41,14 +53,23 @@ router.get('/register', (req, res) => {
     res.render('register')
   })
 
-router.post('/', function(req, res) {
-  axios.post('http://localhost:3001/api/users', req.body)
-    .then(dados => {
-      res.redirect('/', {lista: dados.data})
-    })
-    .catch(erro => {
-      res.render('error', {error: erro})
-    })
-})
+router.post('/regi', function(req,res){
+  var hash = bcrypt.hashSync(req.body.password, 10);
+  axios.post('http://localhost:3001/users', {
+     email: req.body.email,
+     nome: req.body.name,
+    password: hash
+  })
+     .then(dados => res.redirect('/'))
+     .catch(e => res.render('error', {error: e}))
+ })
+
+ function verificaAutenticacao(req,res,next){
+  if(req.isAuthenticated()){
+  //req.isAuthenticated() will return true if user is logged in
+    next();
+  } else{
+    res.redirect("/");}
+}
 
 module.exports = router;
