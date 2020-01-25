@@ -17,7 +17,7 @@ var jwt = require('jsonwebtoken')
 
 // Configuração da estratégia local
 passport.use(new LocalStrategy(
-  {usernameField: 'email'}, (email, password, done) => {
+  {usernameField: 'username'}, (username, password, done) => {
       var token = jwt.sign({sub : 'token gerado para rede de estudante'},
                         "pri2019",
                         {
@@ -26,7 +26,7 @@ passport.use(new LocalStrategy(
                             audience: "login em agenda",
 
   })
-  axios.get('http://localhost:5001/api/users/' + email + '?token=' + token)
+  axios.get('http://localhost:3001/users/' + username + '?token=' + token)
     .then(dados => {
       const user = dados.data
       if(!user) { 
@@ -48,13 +48,13 @@ passport.use(new LocalStrategy(
 passport.serializeUser((user,done) => {
   console.log('Vou serializar o user: ' + JSON.stringify(user))
   // Serialização do utilizador. O passport grava o utilizador na sessão aqui.
-  done(null, user.email)
+  done(null, user.username)
 })
   
 // Desserialização: a partir do id obtem-se a informação do utilizador
-passport.deserializeUser((email, done) => {
-  console.log('Vou desserializar o utilizador: ' + email)
-  axios.get('http://localhost:5001/api/users' + email)
+passport.deserializeUser((username, done) => {
+  console.log('Vou desserializar o utilizador: ' + username)
+  axios.get('http://localhost:3001/users' + username)
     .then(dados => done(null, dados.data))
     .catch(erro => done(erro, false))
 })
