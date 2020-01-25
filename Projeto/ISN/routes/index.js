@@ -41,4 +41,14 @@ router.get('/register', (req, res) => {
     res.render('register')
   })
 
+router.post('/', function(req, res) {
+  axios.post('http://localhost:3001/api/users', req.body)
+    .then(dados => {
+      res.redirect('/', {lista: dados.data})
+    })
+    .catch(erro => {
+      res.render('error', {error: erro})
+    })
+})
+
 module.exports = router;

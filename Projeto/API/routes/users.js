@@ -46,4 +46,10 @@ router.get('/course/:course', function(req, res, next) {
     .catch(e => res.status(500).jsonp(e))
 });
 
+router.post('/users', function(req, res, next) {
+  User.inserir(req.body)
+    .then(dados => res.jsonp(dados))
+    .catch(e => res.status(500).jsonp(e))
+});
+
 module.exports = router;
