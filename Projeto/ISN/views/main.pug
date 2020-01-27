@@ -8,15 +8,17 @@ block content
                     .w3-container
                         h4.w3-center O meu perfil
                         p.w3-center
-                            img(src="../avatar/avatar1.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar")
+                            img(src="../avatar/"+data[2].loggedUser.fotoPath class="w3-circle" style="height:106px;width:106px" alt="Avatar")
                         hr
                         p
-                            i(class="fa fa-pencil fa-fw w3-margin-right w3-text-theme")=data[0].users[0].username.charAt(0).toUpperCase() + data[0].users[0].username.slice(1)
+                            i(class="fa fa-pencil fa-fw w3-margin-right w3-text-theme")= data[2].loggedUser.username
+                            //data[2].loggedUser to get current user data...
+                            
+                        p
+                            i(class="fa fa-home fa-fw w3-margin-right w3-text-theme")= data[2].loggedUser.course
+                        p
+                            i(class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme")= data[2].loggedUser.type.charAt(0).toUpperCase() + data[2].loggedUser.type.slice(1)
                             //This code gets the 1st letter and capitalizes it...
-                        p
-                            i(class="fa fa-home fa-fw w3-margin-right w3-text-theme")=data[0].users[0].course.charAt(0).toUpperCase() + data[0].users[0].course.slice(1)
-                        p
-                            i(class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme")=data[0].users[0].type.charAt(0).toUpperCase() + data[0].users[0].type.slice(1)
                 br
                 div.w3-card.w3-round.w3-white
                     .w3-container
@@ -76,6 +78,7 @@ block content
                             //treating date format... Getting hour then the minutes.
                             p Hora : 
                                 != data[1].posts[0].event.date.split('T')[1].split(':')[0] +':'+ data[1].posts[0].event.date.split('T')[1].split(':')[1]
+                a.w3-button.w3-green(href="/logout") Logout
                                 
 
                             

@@ -47,13 +47,16 @@ function get(url) {
 }
 
 router.get('/main',verificaAutenticacao, (req, res) => {
+  var user = JSON.stringify(req.user)
   Promise.all([
     get(`http://localhost:3001/users`),
     get(`http://localhost:3001/posts`)
   ]).then(([users, posts]) =>{
     users=JSON.stringify(users)
     posts=JSON.stringify(posts)
-    var data = JSON.parse("[{\"users\": "+users+"},{\"posts\":"+posts+"}]")
+    var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"loggedUser\":"+user+"}]")
+    console.log(JSON.stringify(data,null,2))
+    //var data = JSON.parse("[{\"users\": "+users+"},{\"posts\":"+posts+"},{\"loggedUser\":"+req.user+"}]")
     data[1].posts.sort(sortByProperty('datePosted'))
     res.render('main',{data})
   })
@@ -87,6 +90,12 @@ router.post('/regi', upload.single('avatar'), function(req,res){
      .then(dados => res.redirect('/'))
      .catch(e => res.render('error', {error: e}))
  })
+
+ router.get('/logout', verificaAutenticacao, function(req,res){
+  req.logout()
+  res.redirect('/')
+})
+
 
  function verificaAutenticacao(req,res,next){
   if(req.isAuthenticated()){
