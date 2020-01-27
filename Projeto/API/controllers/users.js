@@ -42,4 +42,9 @@ module.exports.consultByCourse = course => {
         .exec()
 }
 
+module.exports.inserir = user =>{
+    var novo = new User(user)
+    return novo.save()
+}
+
 
