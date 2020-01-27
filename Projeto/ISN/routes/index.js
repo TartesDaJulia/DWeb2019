@@ -78,14 +78,14 @@ router.post('/regi', upload.single('avatar'), function(req,res){
 
   var hash = bcrypt.hashSync(req.body.password, 10);
   axios.post('http://localhost:3001/users', {
-     username: req.body.username,
-     name: req.body.name,
-     password: hash,
-     mail: req.body.mail,
+     username:    req.body.username,
+     name:        req.body.name,
+     password:    hash,
+     mail:        req.body.mail,
      dateOfBirth: req.body.dateOfBirth,
-     fotoPath:req.file.originalname,
-     course:req.body.course,
-     type:req.body.type
+     fotoPath:    req.file.originalname,
+     course:      req.body.course,
+     type:        req.body.type
   })
      .then(dados => res.redirect('/'))
      .catch(e => res.render('error', {error: e}))
