@@ -20,6 +20,9 @@ var postSchema = new mongoose.Schema({
     files:      [fileSchema],
     audience:   String,
     event:      eventSchema
+},
+{
+    versionKey: false
 })
 
 module.exports = mongoose.model('post', postSchema)

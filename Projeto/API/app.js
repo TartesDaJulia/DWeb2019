@@ -22,25 +22,25 @@ var passport = require('passport')
 
 var extractFromSession = function(req){
   var token = null
-  if(req && req.session) token = req.session.token
+  token = req.query.token
   return token
 }
 
 var extractFromQS = function(req){
   var token = null
-  token = req.query.token
+  if(req.query && req.query.token) token = req.query.token
   return token
 }
 
 var extractFromBody = function(req){
   var token = null
-  token = req.body.token
+  if(req.body && req.body.token) token = req.body.token
   return token
 }
 
 passport.use(new JWTStrategy({
   secretOrKey: 'pri2019',
-  jwtFromRequest: ExtractJWT.fromExtractors([extractFromSession, extractFromQS, extractFromBody])
+  jwtFromRequest: ExtractJWT.fromExtractors([extractFromQS, extractFromBody])
 }, async (token, done) => {
   try{
     return done(null, token)
@@ -57,7 +57,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(logger('dev'));
 app.use(express.json());

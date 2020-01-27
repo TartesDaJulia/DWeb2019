@@ -17,29 +17,25 @@ var jwt = require('jsonwebtoken')
 
 // Configuração da estratégia local
 passport.use(new LocalStrategy(
-  {usernameField: 'username'}, (username, password, done) => {
-      var token = jwt.sign({sub : 'token gerado para rede de estudante'},
-                        "pri2019",
-                        {
-                            expiresIn: 120,
-                            issuer: 'ISN',
-                            audience: "login em agenda",
-
-  })
-  axios.get('http://localhost:3001/users/' + username + '?token=' + token)
+  {usernameField: 'mail'}, (mail, password, done) => {
+  var token = jwt.sign({},"pri2019",
+    {
+        expiresIn: 3000,
+        issuer: 'ISN',
+    })
+  axios.get('http://localhost:3001/users/mail/' + mail + '?token=' + token)
     .then(dados => {
       const user = dados.data
+      console.log(JSON.stringify(user))
       if(!user) { 
         return done(null, false, {message: 'Utilizador inexistente!\n'})
       }
-      else {
       if(!bcrypt.compareSync(password, user.password)) {
-         return done(null, false, {message: 'Password inválida!\n'})
+        console.log(user.password)
+        console.log("sucesso-------------------------------------")
+        return done(null, false, {message: 'Password inválida!\n'})
         }
-        else {
       return done(null, user)
-        }
-      }
   })
   .catch(erro => done(erro))
 }))
@@ -48,13 +44,18 @@ passport.use(new LocalStrategy(
 passport.serializeUser((user,done) => {
   console.log('Vou serializar o user: ' + JSON.stringify(user))
   // Serialização do utilizador. O passport grava o utilizador na sessão aqui.
-  done(null, user.username)
+  done(null, user.mail)
 })
   
 // Desserialização: a partir do id obtem-se a informação do utilizador
-passport.deserializeUser((username, done) => {
-  console.log('Vou desserializar o utilizador: ' + username)
-  axios.get('http://localhost:3001/users' + username)
+passport.deserializeUser((mail, done) => {
+  var token = jwt.sign({}, "pri2019", 
+  {
+      expiresIn: 3000, 
+      issuer: "Servidor myAgenda"
+})
+  console.log('Vou desserializar o utilizador: ' + mail)
+  axios.get('http://localhost:3001/users/mail/' + mail + '?token=' + token)
     .then(dados => done(null, dados.data))
     .catch(erro => done(erro, false))
 })

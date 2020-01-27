@@ -6,11 +6,14 @@ var userSchema = new mongoose.Schema({
     name:       String,
     mail:       String,
     dateOfBirth:Date,
-    hashedPass: String,
+    password:   String,
     fotoPath:   String,
     course:     String,
     studentId:  String,
     type:       String
+},
+{
+    versionKey: false
 })
 
 module.exports = mongoose.model('user', userSchema)

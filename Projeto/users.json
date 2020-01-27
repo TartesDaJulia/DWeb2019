@@ -5,7 +5,7 @@
         "name"          : "username1",
         "mail"          :"user1@mail.com",
         "dateOfBirth"   : "1991-01-01T00:00:01.1Z",
-        "hashedPass"    : "1",
+        "password"    : "1",
         "fotoPath"      : "avatar1.png",
         "course"        : "course1",
         "type"          : "student"
@@ -16,7 +16,7 @@
         "name"          : "username2",
         "mail"          :"user2@mail.com",
         "dateOfBirth"   : "1991-01-02T00:00:01.1Z",
-        "hashedPass"    : "2",
+        "password"    : "2",
         "fotoPath"      : "avatar2.png",
         "course"        : "course2",
         "type"          : "teacher"
@@ -27,7 +27,7 @@
         "name"          : "username3",
         "mail"          :"user3@mail.com",
         "dateOfBirth"   : "1991-01-03T00:00:01.1Z",
-        "hashedPass"    : "3",
+        "password"    : "3",
         "fotoPath"      : "avatar3.png",
         "course"        : "course3",
         "type"          : "student"

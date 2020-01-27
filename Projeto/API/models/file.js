@@ -9,6 +9,9 @@ var fileSchema = new mongoose.Schema({
     size:           Number,
     dateUploaded:   Date,
     uploadedBy:     String,
+},
+{
+    versionKey: false
 })
 
 module.exports = mongoose.model('file', fileSchema)

@@ -4,8 +4,15 @@ var router = express.Router();
 var axios = require('axios');
 var fetch = require('node-fetch')
 var logger = require('morgan');
+var flash = require('connect-flash')
+
 var passport = require('passport')
 var bcrypt = require('bcryptjs')
+
+const fs = require('fs')
+
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 
 var sortByProperty = function (property) {
   return function (x, y) {
@@ -18,8 +25,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Rede Estudantes' });
 });
 
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: 'Rede Estudantes' });
+});
+
 router.post('/login', passport.authenticate('local', 
-  { successRedirect: '/',
+  { successRedirect: '/main',
     successFlash: 'Utilizador autenticado com sucesso!',
     failureRedirect: '/login',
     failureFlash: 'Utilizador ou password inválido(s)...'
@@ -35,7 +46,7 @@ function get(url) {
   })
 }
 
-router.get('/main', (req, res) => {
+router.get('/main',verificaAutenticacao, (req, res) => {
   Promise.all([
     get(`http://localhost:3001/users`),
     get(`http://localhost:3001/posts`)
@@ -53,12 +64,25 @@ router.get('/register', (req, res) => {
     res.render('register')
   })
 
-router.post('/regi', function(req,res){
+router.post('/regi', upload.single('avatar'), function(req,res){
+  //treat file upload
+  let oldPath = __dirname + '/../' + req.file.path
+  let newPath = __dirname + '/../public/avatar/' + req.file.originalname
+
+  fs.rename(oldPath,newPath,function(err) {
+    if(err) throw err
+  })
+
   var hash = bcrypt.hashSync(req.body.password, 10);
   axios.post('http://localhost:3001/users', {
      username: req.body.username,
      name: req.body.name,
-    password: hash
+     password: hash,
+     mail: req.body.mail,
+     dateOfBirth: req.body.dateOfBirth,
+     fotoPath:req.file.originalname,
+     course:req.body.course,
+     type:req.body.type
   })
      .then(dados => res.redirect('/'))
      .catch(e => res.render('error', {error: e}))

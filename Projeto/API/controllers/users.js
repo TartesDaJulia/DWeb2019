@@ -14,7 +14,7 @@ module.exports.consult = id => {
 
 module.exports.consultByUsername = username => {
     return User
-        .find({username: username})
+        .findOne({username: username})
         .exec()
 }
 
@@ -32,7 +32,7 @@ module.exports.consultByDateOfBirth = date => {
 
 module.exports.consultByMail = mail => {
     return User
-        .find({mail: mail})
+        .findOne({mail: mail})
         .exec()
 }
 
@@ -42,7 +42,7 @@ module.exports.consultByCourse = course => {
         .exec()
 }
 
-module.exports.inserir = user =>{
+module.exports.insert = user =>{
     var novo = new User(user)
     return novo.save()
 }
