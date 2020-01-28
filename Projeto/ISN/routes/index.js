@@ -56,7 +56,6 @@ router.get('/main',verificaAutenticacao, (req, res) => {
     posts=JSON.stringify(posts)
     var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"loggedUser\":"+user+"}]")
     console.log(JSON.stringify(data,null,2))
-    //var data = JSON.parse("[{\"users\": "+users+"},{\"posts\":"+posts+"},{\"loggedUser\":"+req.user+"}]")
     data[1].posts.sort(sortByProperty('datePosted'))
     res.render('main',{data})
   })
