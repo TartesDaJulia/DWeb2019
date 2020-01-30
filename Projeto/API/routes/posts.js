@@ -10,6 +10,12 @@ router.get('/', function(req, res) {
     .catch(e => res.status(500).jsonp(e))
 });
 
+router.post('/', function(req, res) {
+  Post.insere()
+    .then(dados => res.jsonp(dados))
+    .catch(e => res.status(500).jsonp(e))
+});
+
 router.get('/id/:id', function(req, res, next) {
   Post.consult(req.params.id)
     .then(dados => res.jsonp(dados))

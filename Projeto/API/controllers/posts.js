@@ -12,6 +12,11 @@ module.exports.consult = id => {
         .exec()
 }
 
+module.exports.insere = post => {
+    var novo = new Post(post)
+    return novo.save()
+}
+
 module.exports.consultWithClassifier = classifier => {
     return Post
         .findOne({classifier: classifier})
