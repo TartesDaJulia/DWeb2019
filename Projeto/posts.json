@@ -1,5 +1,7 @@
 [
     {
+        "title":"Post1",
+        "description":"Post 1   has info on a class",
         "postedBy"      : "1",
         "datePosted"    : "2001-01-01T00:00:01.1Z",
         "classifiers"      : ["111","1"],
@@ -9,8 +11,8 @@
         "audience"    : "public"
     },
     {   
-        "title":"Post",
-        "description":"Post 1 has info on a class",
+        "title":"Post2",
+        "description":"Post 2 has info on a class",
         "postedBy"      : "2",
         "datePosted"    : "2001-01-02T00:00:01.1Z",
         "classifiers"      : ["files","course1"],
@@ -20,6 +22,8 @@
         "audience"    : "student"
     },
     {
+        "title":"Post",
+        "description":"Post 3 has info on a class",
         "postedBy"      : "3",
         "datePosted"    : "2001-01-03T00:00:01.1Z",
         "classifiers"      :["333","3"],

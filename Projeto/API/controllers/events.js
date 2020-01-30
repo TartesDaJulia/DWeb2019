@@ -61,10 +61,10 @@ module.exports.insert = event => {
     var novo = new Event(event)
     return novo.save()
 }
-
+//db.events.aggregate( [{$unwind: { path: "$files", preserveNullAndEmptyArrays: true }},{$group:{_id: "$_id"}}] )
 module.exports.consultEventFiles = id => {
     return Event
-    .aggregate([{ $unwind: "$files"}, {$match: {"_id":id}}])
+    .aggregate([{$unwind: { path: "$files", preserveNullAndEmptyArrays: true }},{$group:{_id: "$_id"}}])
     .exec()
 }
 
