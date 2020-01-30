@@ -71,13 +71,13 @@ block content
                     div.w3-card.w3-round.w3-white
                             h4.w3-center Próximo evento
                             hr.w3-clear 
-                            p=data[1].posts[0].event.description
-                            //treating date format... Getting day from a split
-                            p Data : 
-                                =data[1].posts[0].event.date.split('T')[0]
-                            //treating date format... Getting hour then the minutes.
-                            p Hora : 
-                                != data[1].posts[0].event.date.split('T')[1].split(':')[0] +':'+ data[1].posts[0].event.date.split('T')[1].split(':')[1]
+                            //p=data[1].posts[0].event.description
+                            ////treating date format... Getting day from a split
+                            //p Data : 
+                            //    =data[1].posts[0].event.date.split('T')[0]
+                            ////treating date format... Getting hour then the minutes.
+                            //p Hora : 
+                            //    != data[1].posts[0].event.date.split('T')[1].split(':')[0] +':'+ data[1].posts[0].event.date.split('T')[1].split(':')[1]
                 a.w3-button.w3-green(href="/logout") Logout
                                 
 
