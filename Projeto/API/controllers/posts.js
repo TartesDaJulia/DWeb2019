@@ -47,7 +47,7 @@ module.exports.insert = post => {
 
 module.exports.consultPostFiles = id => {
     return Post
-    .aggregate([{ $unwind: "$files"}, {$match: {"_id":id}}])
+    .aggregate([{ $unwind: "$files" }, {$match: {"_id":'ObjectId("'+id+'")'}},{ $group : {_id : "$files.id"} }])
     .exec()
 }
 

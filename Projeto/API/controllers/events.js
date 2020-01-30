@@ -61,11 +61,13 @@ module.exports.insert = event => {
     var novo = new Event(event)
     return novo.save()
 }
-//db.events.aggregate( [{$unwind: { path: "$files", preserveNullAndEmptyArrays: true }},{$group:{_id: "$_id"}}] )
+//not working
+//db.events.aggregate([{ $unwind: "$files" }, {$match: {title:"event3"}},{ $group : {_id : "$files.id"} }])
 module.exports.consultEventFiles = id => {
+    newid='ObjectId("'+id+'")'
     return Event
-    .aggregate([{$unwind: { path: "$files", preserveNullAndEmptyArrays: true }},{$group:{_id: "$_id"}}])
-    .exec()
+        .aggregate([{ $unwind: "$files" }, {$match: {_id:'ObjectId("'+newid+'")'}},{ $group : {_id : "$files.id"} }])
+        .exec()
 }
 
 //DEPRECATED

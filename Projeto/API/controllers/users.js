@@ -43,8 +43,15 @@ module.exports.consultByCourse = course => {
 }
 
 module.exports.insert = user => {
+    console.log("inserting new user!")
+    console.log(user)
     var novo = new User(user)
     return novo.save()
+}
+
+module.exports.insertMore = users => {
+    console.log("Inserted many users!")
+    return User.insertMany(users)
 }
 
 module.exports.update = dados => {
@@ -52,5 +59,11 @@ module.exports.update = dados => {
     console.log(dados.id)
     return User
         .findOneAndUpdate({_id:dados.id}, {username:dados.username, type:dados.type, course:dados.course})
+        .exec()
+}
+
+module.exports.delete = id => {
+    return User
+        .remove({_id:id})
         .exec()
 }

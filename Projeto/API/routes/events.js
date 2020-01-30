@@ -36,8 +36,8 @@ router.get('/date/:date', function(req, res, next) {
     .catch(e => res.status(500).jsonp(e))
 });
 
-router.get('/files/:files', function(req, res, next) {
-    Event.consultEventFiles(req.params.files)
+router.get('/files/:id', function(req, res, next) {
+    Event.consultEventFiles(req.params.id)
       .then(dados => res.jsonp(dados))
       .catch(e => res.status(500).jsonp(e))
 });

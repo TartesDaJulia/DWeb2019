@@ -22,31 +22,67 @@ var sortByProperty = function (property) {
 
 /* GET home page. */
 router.get('/',verificaAutenticacao2, function(req, res, next) {
+  console.log("index")
   Promise.all([
     get(`http://localhost:3001/users`),
-    get(`http://localhost:3001/posts/public`)
-  ]).then(([users, posts]) =>{
+    get(`http://localhost:3001/posts/public`),
+    get(`http://localhost:3001/events/public`)
+  ]).then(([users, posts, events]) =>{
     users=JSON.stringify(users)
     posts=JSON.stringify(posts)
-    var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"}]")
-    console.log(JSON.stringify(data,null,2))
-    data[1].posts.sort(sortByProperty('datePosted'))
-    res.render('index',{data})
+    events=JSON.stringify(events)
+    if(events!="[]" && posts!="[]") 
+    {
+      console.log("events e posts")
+      console.log(events)
+      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"events\":"+events+"}]")
+      data[1].posts.sort(sortByProperty('datePosted'))
+      data[2].events.sort(sortByProperty('date'))
+      res.render("index", {data:data})
+    }
+    else if(posts != "[]"){
+      console.log("just posts")
+      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"}]")
+      console.log(JSON.stringify(data))
+      data[1].posts.sort(sortByProperty('datePosted'))
+    }
+    else {
+      res.render('index')
+    }
+    res.render("index", {data})
   })
     .catch(err => res.render('error',{erro: err}))
-});
+});	
 
 router.get('/login',verificaAutenticacao2, function(req, res, next) {
+  console.log("index")
   Promise.all([
     get(`http://localhost:3001/users`),
-    get(`http://localhost:3001/posts/public`)
-  ]).then(([users, posts]) =>{
+    get(`http://localhost:3001/posts/public`),
+    get(`http://localhost:3001/events/public`)
+  ]).then(([users, posts, events]) =>{
     users=JSON.stringify(users)
     posts=JSON.stringify(posts)
-    var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"}]")
-    console.log(JSON.stringify(data,null,2))
-    data[1].posts.sort(sortByProperty('datePosted'))
-    res.render('index',{data})
+    events=JSON.stringify(events)
+    if(events!="[]" && posts!="[]") 
+    {
+      console.log("events e posts")
+      console.log(events)
+      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"events\":"+events+"}]")
+      data[1].posts.sort(sortByProperty('datePosted'))
+      data[2].events.sort(sortByProperty('date'))
+      res.render("index", {data:data})
+    }
+    else if(posts != "[]"){
+      console.log("just posts")
+      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"}]")
+      console.log(JSON.stringify(data))
+      data[1].posts.sort(sortByProperty('datePosted'))
+    }
+    else {
+      res.render('index')
+    }
+    res.render("index", {data})
   })
     .catch(err => res.render('error',{erro: err}))
 });
@@ -81,11 +117,13 @@ router.get('/main',verificaAutenticacao, (req, res) => {
   else{
     Promise.all([
       get(`http://localhost:3001/users`),
-      get(`http://localhost:3001/posts`)
-    ]).then(([users, posts]) =>{
+      get(`http://localhost:3001/posts`),
+      get(`http://localhost:3001/events`)
+    ]).then(([users, posts,events]) =>{
       users=JSON.stringify(users)
       posts=JSON.stringify(posts)
-      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"loggedUser\":"+user+"}]")
+      events=JSON.stringify(events)
+      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"events\":"+events+"},{\"loggedUser\":"+user+"}]")
       data[1].posts.sort(sortByProperty('datePosted'))
       res.render('main',{data})
     })
@@ -173,8 +211,17 @@ router.post('/regi', upload.single('avatar'), function(req,res){
  })
 
  router.get('/logout', verificaAutenticacao, function(req,res){
-  req.logout()
-  res.redirect('/')
+  req.logout();
+  passport.user = null;  // Without this I never get logged out, even though session is deleted.
+  if (req.session) {
+      req.session.destroy(function (err) {
+          if (err) {
+              console.log(err)
+          } else {
+              res.redirect('/');
+          }
+      });
+  }
 })
 
 
@@ -186,8 +233,34 @@ router.post('/update',verificaAutenticacao, (req,res) => {
     .catch(e => res.render('error', {error:e}))
 })
 
+router.post('/massRegister', upload.single('registers'),(req,res) => {
+
+  let oldPath = __dirname + '/../' + req.file.path
+  let newPath = __dirname + '/../../API/fileToParse/registers.txt' 
+
+  fs.rename(oldPath,newPath,function(err) {
+    if(err) throw err
+  })
+
+  axios.get("http://localhost:3001/users/massRegister")
+    .then(() => {
+      sleep(1000).then(()=> res.redirect('/'))
+    })
+    .catch(e => res.render('error', {error:e}))
+})
+
+
+router.get('/delete/:id',verificaAutenticacao,(req,res) => {
+  if(req.user.type == "admin")
+  {
+    axios.get("http://localhost:3001/users/delete/"+req.params.id)
+      .then(res.redirect('/'))  
+      .catch(e => res.render('error', {error:e}))
+  }
+})
 
 function verificaAutenticacao(req,res,next){
+  console.log("Hello")
   if(req.isAuthenticated()){
   //req.isAuthenticated() will return true if user is logged in
     next();
@@ -203,6 +276,10 @@ function verificaAutenticacao2(req,res,next){
   } else{
     next();
   }
+}
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
 module.exports = router;

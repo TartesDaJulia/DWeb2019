@@ -8,16 +8,16 @@ block content
                     .w3-container
                         h4.w3-center O meu perfil
                         p.w3-center
-                            img(src="../avatar/"+data[2].loggedUser.fotoPath class="w3-circle" style="height:106px;width:106px" alt="Avatar")
+                            img(src="../avatar/"+data[3].loggedUser.fotoPath class="w3-circle" style="height:106px;width:106px" alt="Avatar")
                         hr
                         p
-                            i(class="fa fa-pencil fa-fw w3-margin-right w3-text-theme")= data[2].loggedUser.username
+                            i(class="fa fa-pencil fa-fw w3-margin-right w3-text-theme")= data[3].loggedUser.username
                             //data[2].loggedUser to get current user data...
                             
                         p
-                            i(class="fa fa-home fa-fw w3-margin-right w3-text-theme")= data[2].loggedUser.course
+                            i(class="fa fa-home fa-fw w3-margin-right w3-text-theme")= data[3].loggedUser.course
                         p
-                            i(class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme")= data[2].loggedUser.type.charAt(0).toUpperCase() + data[2].loggedUser.type.slice(1)
+                            i(class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme")= data[3].loggedUser.type.charAt(0).toUpperCase() + data[3].loggedUser.type.slice(1)
                             //This code gets the 1st letter and capitalizes it...
                 br
                 div.w3-card.w3-round.w3-white
@@ -71,22 +71,19 @@ block content
                                             h4=u.username
                                             hr.w3-clear
                                             p=p.description
-                        br
-                        div.w3-card.w3-round.w3-white
-                            div.w3-container.w3-padding
             div.w3-col.m2
                 div.w3-row-padding
-                    a.w3-button.w3-green(href="/logout" style="margin-left:50px") Logout
                     div.w3-card.w3-round.w3-white
                             h4.w3-center Próximo evento
                             hr.w3-clear 
-                            //p=data[1].posts[0].event.description
-                            ////treating date format... Getting day from a split
-                            //p Data : 
-                            //    =data[1].posts[0].event.date.split('T')[0]
-                            ////treating date format... Getting hour then the minutes.
-                            //p Hora : 
-                            //    != data[1].posts[0].event.date.split('T')[1].split(':')[0] +':'+ data[1].posts[0].event.date.split('T')[1].split(':')[1]
+                            p=data[2].events[0].description
+                            //treating date format... Getting day from a split
+                            p Data : 
+                                =data[2].events[0].date.split('T')[0]
+                            //treating date format... Getting hour then the minutes.
+                            p Hora : 
+                                != data[2].events[0].date.split('T')[1].split(':')[0] +':'+ data[2].events[0].date.split('T')[1].split(':')[1]
+                a.w3-button.w3-green(href="/logout") Logout
                                 
 
                             

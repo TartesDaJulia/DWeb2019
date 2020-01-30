@@ -4,6 +4,9 @@ var passport = require('passport')
 
 var User = require('../controllers/users')
 
+const fs = require('fs');
+var lineReader = require('line-reader');
+
 /* GET home page. */
 router.get('/', function(req, res) {
   User.list()
@@ -58,5 +61,52 @@ router.post('/', function(req, res, next) {
     .then(dados => res.jsonp(dados))
     .catch(e => res.status(500).jsonp(e))
 });
+
+router.get('/delete/:id',function(req,res,next) {
+  console.log("----------------vou apagar----------------------")
+  User.delete(req.params.id)
+    .then(dados => res.jsonp(dados))
+    .catch(e => res.status(500).jsonp(e))
+})
+
+router.get('/massRegister', function(req, res, next) {
+  console.log("Going to insert many users!")
+  var path=__dirname+'/../parsedFile/registers.json'
+
+  var fromFile
+
+  sleep(1000).then(()=>
+  fs.readFile(path,'utf8', (err, data) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    console.log(data)
+    fromFile=JSON.parse(data)
+
+    fs.unlink(path, function(err,data) {
+      if (err) {
+        console.error(err)
+        return
+      }
+      console.log("unlinked")
+      console.log(data)
+    })
+    User.insertMore(fromFile.registers)
+    .then(dados => {
+      res.jsonp(dados)
+
+    })
+    .catch(e => res.status(500).jsonp(e)) 
+  })
+  )
+   
+   
+});
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
 
 module.exports = router;
