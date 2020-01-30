@@ -9,7 +9,7 @@ var postSchema = new mongoose.Schema({
     description:String,
     postedBy:   String,
     datePosted: Date,
-    classifier: [String],
+    classifiers: [String],
     files:      [fileSchema],
     audience:   String,
 },
