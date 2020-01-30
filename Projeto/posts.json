@@ -1,53 +1,31 @@
 [
     {
-        "id"            : "1",
         "postedBy"      : "1",
         "datePosted"    : "2001-01-01T00:00:01.1Z",
         "classifiers"      : ["111","1"],
         "files"   :     [
             {"id":"1"},{"id":"2"},{"id":"3"}
         ],
-        "audience"    : "public",
-        "event": {
-            "title":"event1",
-            "date":"2001-01-01T00:00:01.1Z",
-            "location":"local1",
-            "description":"Event 1 will be an exam",
-            "type":"exam"
-        }
+        "audience"    : "public"
     },
-    {
-        "id"            : "2",
+    {   
+        "title":"Post",
+        "description":"Post 1 has info on a class",
         "postedBy"      : "2",
         "datePosted"    : "2001-01-02T00:00:01.1Z",
-        "classifiers"      : ["222","2"],
+        "classifiers"      : ["files","course1"],
         "files"   :     [
             {"id":"1"},{"id":"2"},{"id":"3"}
         ],
-        "audience"    : "student",
-        "event": {
-            "title":"event2",
-            "date":"2001-01-02T00:00:01.1Z",
-            "location":"local2",
-            "description":"Event 2 will celebrate 2 years of 2",
-            "type":"gathering"
-        }
+        "audience"    : "student"
     },
     {
-        "id"            : "3",
         "postedBy"      : "3",
         "datePosted"    : "2001-01-03T00:00:01.1Z",
         "classifiers"      :["333","3"],
         "files"   :     [
             {"id":"1"},{"id":"2"},{"id":"3"}
         ],
-        "audience"    : "teacher",
-        "event": {
-            "title":"event3",
-            "date":"2001-01-03T00:00:01.1Z",
-            "location":"local3",
-            "description":"Event 3 will celebrate 3 year of 3",
-            "type":"gathering"
-        }
+        "audience"    : "teacher"
     }
 ]

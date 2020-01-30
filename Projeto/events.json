@@ -1,0 +1,42 @@
+[
+    {
+        "title":"event1",
+        "date":"2020-02-05T00:00:01.1Z",
+        "location":"local1",
+        "description":"Event 1 will be an exam",
+        "type":"exam",
+        "audience":"all",
+        "datePosted":"2019-12-01T00:00:01.1Z",
+        "postedBy":"1",
+        "files"   :     [
+            {"id":"1"},{"id":"2"},{"id":"3"}
+        ]
+    },
+    {
+        "title":"event2",
+        "date":"2020-02-05T00:00:02.2Z",
+        "location":"local2",
+        "description":"Event 2 will be an exam",
+        "type":"exam",
+        "audience":"all",
+        "datePosted":"2019-12-02T00:00:02.2Z",
+        "postedBy":"2",
+        "files"   :     [
+            {"id":"1"},{"id":"2"},{"id":"3"}
+        ]
+    },
+    {
+        "title":"event3",
+        "date":"2020-02-05T00:00:03.3Z",
+        "location":"local3",
+        "description":"Event 3 will be a gathering",
+        "type":"gathering",
+        "audience":"all",
+        "datePosted":"2019-12-03T00:00:01.1Z",
+        "postedBy":"3",
+        "files"   :     [
+            {"id":"1"},{"id":"2"},{"id":"3"}
+        ]
+    }
+]
+

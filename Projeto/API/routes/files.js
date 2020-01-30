@@ -40,4 +40,5 @@ router.get('/type/:type', function(req, res, next) {
     .catch(e => res.status(500).jsonp(e))
 });
 
+
 module.exports = router;

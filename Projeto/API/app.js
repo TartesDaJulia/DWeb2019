@@ -14,6 +14,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var filesRouter = require('./routes/files');
 var postsRouter = require('./routes/posts');
+var eventsRouter = require('./routes/events');
+
 
 // Autenticação com JWT
 var JWTStrategy = require('passport-jwt').Strategy
@@ -68,6 +70,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/files', filesRouter);
 app.use('/posts', postsRouter);
+app.use('/events', eventsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

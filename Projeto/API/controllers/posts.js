@@ -8,7 +8,7 @@ module.exports.list = () => {
 
 module.exports.consult = id => {
     return Post
-        .findOne({id: id})
+        .findOne({_id: id})
         .exec()
 }
 
@@ -35,14 +35,26 @@ module.exports.listPublic = () => {
         .find({audience: "public"})
 }
 
+module.exports.insert = post => {
+    var novo = new Post(post)
+    return novo.save()
+}
+
+module.exports.consultPostFiles = id => {
+    return Post
+    .aggregate([{ $unwind: "$files"}, {$match: {"_id":id}}])
+    .exec()
+}
+
+//DEPRECATED
 //find posts by event type
 //db.posts.aggregate([{$unwind: "$event"},{$match:{"event.type":"gathering"}}]).pretty()
 //caso nao funcione: transformar event em "event"
-module.exports.consultByEvent = event => {
-    return Post
-        .aggregate([{ $unwind: "$event"}, {$match: {"event.type":event}}])
-        .exec()
-}
+//module.exports.consultByEvent = event => {
+//    return Post
+//        .aggregate([{ $unwind: "$event"}, {$match: {"event.type":event}}])
+//        .exec()
+//}
 
 
 

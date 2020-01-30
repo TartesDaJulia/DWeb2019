@@ -34,6 +34,12 @@ router.get('/date/:date', function(req, res, next) {
     .catch(e => res.status(500).jsonp(e))
 });
 
+router.get('/files/:id', function(req, res, next) {
+  Post.consultPostFiles(req.params.id)
+    .then(dados => res.jsonp(dados))
+    .catch(e => res.status(500).jsonp(e))
+});
+
 router.get('/public', function(req,res) {
   Post.listPublic()
     .then(dados=> res.jsonp(dados))

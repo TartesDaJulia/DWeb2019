@@ -4,22 +4,14 @@ var fileSchema = new mongoose.Schema({
     id: String
 })
 
-var eventSchema = new mongoose.Schema({
-    title:          String,
-    date:           Date,
-    location:       String,
-    description:    String,
-    type:           String //photo, exam, garthering etc
-})
-
 var postSchema = new mongoose.Schema({
-    id:         String,
+    title:      String,
+    description:String,
     postedBy:   String,
     datePosted: Date,
-    classifier: String,
+    classifier: [String],
     files:      [fileSchema],
     audience:   String,
-    event:      eventSchema
 },
 {
     versionKey: false
