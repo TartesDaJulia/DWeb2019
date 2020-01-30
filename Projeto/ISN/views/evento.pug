@@ -23,6 +23,8 @@ block content
                 div.w3-card.w3-round.w3-white
                     .w3-container
                         p
+                            a.w3-button.w3(href="/main" style="margin-left:50px") As minhas publicações
+                        p
                             a.w3-button.w3(href="/eventos" style="margin-left:50px") Os meus eventos
                 br
                 div.w3-card.w3-round.w3-white
@@ -33,28 +35,28 @@ block content
                     div.w3-col.m12
                         div.w3-card.w3-round.w3-white
                            form.w3-container(action='/pubs' method='post')
-                            h2 Adicione uma publicação
+                            h2 Adicione um Evento
                                 h6.w3-opacity 
                                 h5 Título
                                 input(contenteditable="true" class="w3-border w3-padding" type='text' name='title' style='width:100%; height:30px') 
                                 br
                                 h5 Descrição
                                 input(contenteditable="true" class="w3-border w3-padding" type='text' name='description' style='width:100%; height:100px') 
-                                h5 Se pretende que a publicação seja privada:
+                                h5 Privado
                                 input(contenteditable="true" class="w3-border w3-padding" type='checkbox' name='audience' style='height:40px') 
                                 br
+                                h5 Data do Evento
+                                input(contenteditable="true" class="w3-border w3-padding" type='date' name='date' style='height:40px') 
                                 br
-                                h5 Classificação
-                                <select id="cboCidades"> 
-                                    <option value=""></option>
-                                    <option value="scs">São Caetano do Sul</option>
-                                    <option value="sa">Santo André</option>
-                                    <option value="sbc">São Bernardo do Campo</option>
-                                </select>
+                                h5 Localização
+                                input(contenteditable="true" class="w3-border w3-padding" type='text' name='location' style='width:100%; height:50px') 
+                                br
+                                h5 Tipo de Evento
+                                input(contenteditable="true" class="w3-border w3-padding" type='text' name='type' style='width:100%; height:40px') 
                                 br
                                 br
                                 label.w3-cell Inserir ficheiro
-                                input.w3-input.w3-cell(type="file" name="files" style='margin-top: 10px')
+                                input.w3-input.w3-cell(type="file" name="fileSchema" style='margin-top: 10px')
                                 br
                                 button.w3-button.w3-round-large.w3(id='mais1') Adicionar mais ficheiros
                                 br
@@ -89,6 +91,4 @@ block content
                             //p Hora : 
                             //    != data[1].posts[0].event.date.split('T')[1].split(':')[0] +':'+ data[1].posts[0].event.date.split('T')[1].split(':')[1]
                                 
-
-                            
-                            
+                                
