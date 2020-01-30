@@ -14,7 +14,17 @@ block content
           br
           input.w3-input(type="submit" value="Aceder")
         a.w3-button.w3-light-grey(href="/register") Registar
-  .w3-container.w3-green(style="flex:1;")
-  footer.w3-footer.w3-green
+  .w3-container.w3-green(style="flex:0;")
+  if(data!=null)
+    each p in data[1].posts
+        each u in data[0].users
+            if u.id == p.postedBy
+                div.w3-container.w3-card.w3-white.w3-round.w3-margin
+                    img(src="../avatar/"+u.fotoPath alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px")
+                    span.w3-right.w3-opacity=p.datePosted.split('T')[0]+'       '+p.datePosted.split('T')[1].split(':')[0] +':'+ p.datePosted.split('T')[1].split(':')[1]
+                    h4=u.username
+                    hr.w3-clear
+                    p=p.event.description
+  footer.w3-footer.w3
     address ISN Henrique e Maria
     

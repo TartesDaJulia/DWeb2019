@@ -1,0 +1,51 @@
+extends layout
+
+block content
+    h2 Detalhes utilizador @ ISN 
+    form(action="/update" method="post")
+        table.w3-table-all
+            tr
+                td ID
+                td=user._id
+                td
+                    input(type="text" name="_id" hidden value=user._id)
+            tr
+                td Name
+                td=user.name
+                td
+            tr
+                td Username
+                td=user.username
+                td
+                    input(type="text" name="username" placeholder="Update username" value=user.username)
+            tr
+                td Mail
+                td=user.mail
+                td
+            tr
+                td Date of Birth
+                td=user.dateOfBirth
+                td
+            tr
+                td Photo
+                td
+                    img(src="../avatar/"+user.fotoPath class="w3-circle" style="height:106px;width:106px" alt="Avatar")
+                td
+            tr
+                td Course
+                td=user.course
+                td
+                    input(type="text" name="course" placeholder="Update course" value=user.course)
+            tr
+                td Type of user
+                td=user.type
+                td
+                    input(type="text" name="type" placeholder="Update type" value=user.type)
+            tr
+                td
+                td
+                td
+                    input.w3-button.w3-light-green(type="submit" value="Update user")
+
+    br
+    a.w3-button.w3-green(href="/dashboard") Go to dashboard

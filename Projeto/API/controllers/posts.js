@@ -30,6 +30,11 @@ module.exports.consultByDate = date => {
         .exec()
 }
 
+module.exports.listPublic = () => {
+    return Post
+        .find({audience: "public"})
+}
+
 //find posts by event type
 //db.posts.aggregate([{$unwind: "$event"},{$match:{"event.type":"gathering"}}]).pretty()
 //caso nao funcione: transformar event em "event"

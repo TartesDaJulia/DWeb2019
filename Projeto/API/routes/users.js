@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
     .catch(e => res.status(500).jsonp(e))
 });
 
-router.get('/id/:id',passport.authenticate('jwt', {session: false}), function(req, res, next) {
+router.get('/id/:id', function(req, res, next) {
   User.consult(req.params.id)
     .then(dados => res.jsonp(dados))
     .catch(e => res.status(500).jsonp(e))
@@ -46,6 +46,12 @@ router.get('/course/:course', function(req, res, next) {
     .then(dados => res.jsonp(dados))
     .catch(e => res.status(500).jsonp(e))
 });
+
+router.post('/update', function(req,res,next) {
+  User.update(req.body)
+    .then(dados => res.jsonp(dados))
+    .catch(e => res.status(500).jsonp(e))
+})
 
 router.post('/', function(req, res, next) {
   User.insert(req.body)

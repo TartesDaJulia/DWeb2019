@@ -21,12 +21,34 @@ var sortByProperty = function (property) {
 };
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Rede Estudantes' });
+router.get('/',verificaAutenticacao2, function(req, res, next) {
+  Promise.all([
+    get(`http://localhost:3001/users`),
+    get(`http://localhost:3001/posts/public`)
+  ]).then(([users, posts]) =>{
+    users=JSON.stringify(users)
+    posts=JSON.stringify(posts)
+    var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"}]")
+    console.log(JSON.stringify(data,null,2))
+    data[1].posts.sort(sortByProperty('datePosted'))
+    res.render('index',{data})
+  })
+    .catch(err => res.render('error',{erro: err}))
 });
 
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Rede Estudantes' });
+router.get('/login',verificaAutenticacao2, function(req, res, next) {
+  Promise.all([
+    get(`http://localhost:3001/users`),
+    get(`http://localhost:3001/posts/public`)
+  ]).then(([users, posts]) =>{
+    users=JSON.stringify(users)
+    posts=JSON.stringify(posts)
+    var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"}]")
+    console.log(JSON.stringify(data,null,2))
+    data[1].posts.sort(sortByProperty('datePosted'))
+    res.render('index',{data})
+  })
+    .catch(err => res.render('error',{erro: err}))
 });
 
 router.post('/login', passport.authenticate('local', 
@@ -48,23 +70,55 @@ function get(url) {
 
 router.get('/main',verificaAutenticacao, (req, res) => {
   var user = JSON.stringify(req.user)
-  Promise.all([
-    get(`http://localhost:3001/users`),
-    get(`http://localhost:3001/posts`)
-  ]).then(([users, posts]) =>{
-    users=JSON.stringify(users)
-    posts=JSON.stringify(posts)
-    var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"loggedUser\":"+user+"}]")
-    console.log(JSON.stringify(data,null,2))
-    data[1].posts.sort(sortByProperty('datePosted'))
-    res.render('main',{data})
-  })
-    .catch(err => res.render('error',{erro: err}))
+  console.log(JSON.stringify(req.user.type))
+  console.log(JSON.stringify(req.user.type) == "\"admin\"")
+  if(JSON.stringify(req.user.type) == "\"admin\"")
+  {
+    axios.get("http://localhost:3001/users")
+    .then(dados => res.render('dashboard', {dados:dados.data}))
+    .catch(e => res.render('error', {error: e}))
+  }
+  else{
+    Promise.all([
+      get(`http://localhost:3001/users`),
+      get(`http://localhost:3001/posts`)
+    ]).then(([users, posts]) =>{
+      users=JSON.stringify(users)
+      posts=JSON.stringify(posts)
+      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"loggedUser\":"+user+"}]")
+      data[1].posts.sort(sortByProperty('datePosted'))
+      res.render('main',{data})
+    })
+      .catch(err => res.render('error',{erro: err}))
+  }
 })
 
 router.get('/register', (req, res) => {
     res.render('register')
   })
+
+
+router.get('/dashboard',verificaAutenticacao, (req,res) =>{
+  if(req.user.type == "admin")
+  {
+    axios.get("http://localhost:3001/users")
+    .then(dados => res.render('dashboard', {dados:dados.data}))
+    .catch(e => res.render('error', {error: e}))
+  }
+  else {
+    res.redirect("login")
+  }
+})
+
+router.get('/details/:id',verificaAutenticacao,(req,res) => {
+  if(req.user.type == "admin")
+  {
+    axios.get("http://localhost:3001/users/id/"+req.params.id)
+        .then(dados => res.render('details', {user:dados.data}))  
+        .catch(e => res.render('error', {error:e}))
+  }
+})
+
 
 router.post('/regi', upload.single('avatar'), function(req,res){
   //treat file upload
@@ -96,12 +150,31 @@ router.post('/regi', upload.single('avatar'), function(req,res){
 })
 
 
- function verificaAutenticacao(req,res,next){
+router.post('/update',verificaAutenticacao, (req,res) => {
+  var dados = '{"id": "'+req.body._id+'","username":"'+req.body.username+'", "type" : "'+req.body.type+'", "course":"'+req.body.course+'"}'
+  data=JSON.parse(dados)
+  axios.post("http://localhost:3001/users/update",data)
+    .then(res.redirect('/'))
+    .catch(e => res.render('error', {error:e}))
+})
+
+
+function verificaAutenticacao(req,res,next){
   if(req.isAuthenticated()){
   //req.isAuthenticated() will return true if user is logged in
     next();
   } else{
     res.redirect("/");}
+}
+
+function verificaAutenticacao2(req,res,next){
+  //if user is authenticated then send him to /main, else just show public posts...
+  if(req.isAuthenticated()){
+  //req.isAuthenticated() will return true if user is logged in
+    res.redirect("main");
+  } else{
+    next();
+  }
 }
 
 module.exports = router;

@@ -8,7 +8,7 @@ module.exports.list = () => {
 
 module.exports.consult = id => {
     return User
-        .findOne({id: id})
+        .findOne({_id: id})
         .exec()
 }
 
@@ -42,9 +42,15 @@ module.exports.consultByCourse = course => {
         .exec()
 }
 
-module.exports.insert = user =>{
+module.exports.insert = user => {
     var novo = new User(user)
     return novo.save()
 }
 
-
+module.exports.update = dados => {
+    console.log(dados)
+    console.log(dados.id)
+    return User
+        .findOneAndUpdate({_id:dados.id}, {username:dados.username, type:dados.type, course:dados.course})
+        .exec()
+}
