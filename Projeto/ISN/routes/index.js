@@ -233,6 +233,31 @@ router.post('/update',verificaAutenticacao, (req,res) => {
     .catch(e => res.render('error', {error:e}))
 })
 
+router.post('/massRegister', upload.single('registers'),(req,res) => {
+
+  let oldPath = __dirname + '/../' + req.file.path
+  let newPath = __dirname + '/../../API/fileToParse/registers.txt' 
+
+  fs.rename(oldPath,newPath,function(err) {
+    if(err) throw err
+  })
+
+  axios.get("http://localhost:3001/users/massRegister")
+    .then(() => {
+      sleep(1000).then(()=> res.redirect('/'))
+    })
+    .catch(e => res.render('error', {error:e}))
+})
+
+
+router.get('/delete/:id',verificaAutenticacao,(req,res) => {
+  if(req.user.type == "admin")
+  {
+    axios.get("http://localhost:3001/users/delete/"+req.params.id)
+      .then(res.redirect('/'))  
+      .catch(e => res.render('error', {error:e}))
+  }
+})
 
 function verificaAutenticacao(req,res,next){
   console.log("Hello")
@@ -251,6 +276,10 @@ function verificaAutenticacao2(req,res,next){
   } else{
     next();
   }
+}
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
 module.exports = router;

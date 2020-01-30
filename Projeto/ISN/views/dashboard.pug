@@ -2,19 +2,25 @@ extends layout
 
 block content
     h2.w3-green Dashboard administrator @ ISN 
-    table.w3-table-all
-        tr
-            th Username
-            th Mail
-            th Course
-            th Type
-            th 
-        each u in dados
+    .w3-card
+        table.w3-table-all
             tr
-              td= u.username
-              td= u.mail
-              td= u.course
-              td= u.type
-              td 
-                 a.w3-button.w3-green(href="/details/"+u._id) User Details
+                th Username
+                th Mail
+                th Course
+                th Type
+                th 
+            each u in dados
+                tr
+                td= u.username
+                td= u.mail
+                td= u.course
+                td= u.type
+                td 
+                    a.w3-button.w3-green(href="/details/"+u._id) User Details
+                    a.w3-button.w3-red(href="/delete/"+u._id) Delete
+    .w3-card
+        form(action="/massRegister" method="post" enctype="multipart/form-data")
+            input.w3-input(type="file" name="registers")
+            input.w3-input(type="submit" value="Mass Register")
     a.w3-button.w3-green(href="/logout") Logout
