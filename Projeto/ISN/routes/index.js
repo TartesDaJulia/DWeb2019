@@ -33,21 +33,23 @@ router.get('/',verificaAutenticacao2, function(req, res, next) {
     events=JSON.stringify(events)
     if(events!="[]" && posts!="[]") 
     {
-
       var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"events\":"+events+"}]")
       data[1].posts.sort(sortByProperty('datePosted'))
       data[2].events.sort(sortByProperty('date'))
+      console.log("posts")
+      console.log(data[1].posts)
       res.render("index", {data:data})
     }
     else if(posts != "[]"){
+      console.log("just posts")
       var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"}]")
-
+      console.log(posts)
       data[1].posts.sort(sortByProperty('datePosted'))
+      res.render("index", {data:data})
     }
     else {
       res.render('index')
     }
-    res.render("index", {data})
   })
     .catch(err => res.render('error',{erro: err}))
 });	
@@ -67,6 +69,7 @@ router.get('/login',verificaAutenticacao2, function(req, res, next) {
       var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"events\":"+events+"}]")
       data[1].posts.sort(sortByProperty('datePosted'))
       data[2].events.sort(sortByProperty('date'))
+      console.log(data[1].posts)
       res.render("index", {data:data})
     }
     else if(posts != "[]"){
@@ -113,12 +116,14 @@ router.get('/main',verificaAutenticacao, (req, res) => {
     Promise.all([
       get(`http://localhost:3001/users`),
       get(`http://localhost:3001/posts`),
-      get(`http://localhost:3001/events`)
-    ]).then(([users, posts,events]) =>{
+      get(`http://localhost:3001/events`),
+      get(`http://localhost:3001/files`)
+    ]).then(([users, posts,events,files]) =>{
       users=JSON.stringify(users)
       posts=JSON.stringify(posts)
       events=JSON.stringify(events)
-      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"events\":"+events+"},{\"loggedUser\":"+user+"}]")
+      files=JSON.stringify(files)
+      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"events\":"+events+"},{\"loggedUser\":"+user+"},{\"files\":"+files+"}]")
       data[1].posts.sort(sortByProperty('datePosted'))
       res.render('main',{data})
     })
@@ -140,12 +145,14 @@ router.get('/eventos',verificaAutenticacao, (req, res) => {
     Promise.all([
       get(`http://localhost:3001/users`),
       get(`http://localhost:3001/posts`),
-      get(`http://localhost:3001/events`)
-    ]).then(([users, posts,events]) =>{
+      get(`http://localhost:3001/events`),
+      get(`http://localhost:3001/files`)
+    ]).then(([users, posts,events, files]) =>{
       users=JSON.stringify(users)
       posts=JSON.stringify(posts)
       events=JSON.stringify(events)
-      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"events\":"+events+"},{\"loggedUser\":"+user+"}]")
+      files=JSON.stringify(files)
+      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"events\":"+events+"},{\"loggedUser\":"+user+"},{\"files\":"+files+"}]")
       data[1].posts.sort(sortByProperty('datePosted'))
       res.render('evento',{data})
     })

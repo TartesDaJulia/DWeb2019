@@ -2,8 +2,8 @@ extends layout
 
 block content
   .w3-container.w3-green
-    h2(style='margin-left:450px') Informatics Social Network - University of Minho 
-    .w3-third
+    h2(style='margin-left:600px') Informatics Social Network - University of Minho 
+    .w3-third(style='margin-left:600px')
       form.w3-form(action="/login" method="post")
         label.w3-label E-mail:
         input.w3-input.w3-border(type="text" name="mail") 
@@ -12,39 +12,39 @@ block content
         input.w3-input(type="password" name="password")
         br
         input.w3-input(type="submit" value="Login")
-      a.w3-button.w3-light-grey(href="/register") Regist
+      a.w3-button.w3-light-grey(href="/register") Registar
   div.w3-container.w3-content(style="max-width:1400px;margin-top:80px")
     div.w3-row
-        div.w3-col.m3 
-            div.w3-card.w3-round.w3-white
-
-        div.w3-col.m7 
-          div.w3-row-padding
-              div.w3-col.m12
-                  div.w3-card.w3-round.w3-white
-                    if(data!=null)
-                      each p in data[1].posts
-                          each u in data[0].users
-                              if u.id == p.postedBy
-                                  div.w3-container.w3-card.w3-white.w3-round.w3-margin
-                                      img(src="../avatar/"+u.fotoPath alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px")
-                                      span.w3-right.w3-opacity=p.datePosted.split('T')[0]+'       '+p.datePosted.split('T')[1].split(':')[0] +':'+ p.datePosted.split('T')[1].split(':')[1]
-                                      h4=u.username
-                                      hr.w3-clear
-                                      p=p.description
-        div.w3-col.m2
-          div.w3-row-padding
-              div.w3-card.w3-round.w3-white
-                h4.w3-center Próximo evento
-                hr.w3-clear 
-                if(data[2])
-                  p=data[2].events[0].description
-                  //treating date format... Getting day from a split
-                  p Data : 
-                      =data[2].events[0].date.split('T')[0]
-                  //treating date format... Getting hour then the minutes.
-                  p Hora : 
-                      != data[2].events[0].date.split('T')[1].split(':')[0] +':'+ data[2].events[0].date.split('T')[1].split(':')[1]
+      div.w3-col.m5 
+          div.w3-card.w3-round.w3-white
+      div.w3-col.m11
+        div.w3-row-padding
+            div.w3-col.m12
+                div.w3-card.w3-round.w3-white
+                  if(data!=null)
+                    each p in data[1].posts
+                            each u in data[0].users
+                                    if u._id == p.postedBy
+                                        div.w3-container.w3-card.w3-white.w3-round.w3-margin
+                                            img(src="../avatar/"+u.fotoPath alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px")
+                                            span.w3-right.w3-opacity=p.datePosted.split('T')[0]+'       '+p.datePosted.split('T')[1].split(':')[0] +':'+ p.datePosted.split('T')[1].split(':')[1]
+                                            h3=p.title
+                                            h5=u.username
+                                            hr.w3-clear
+                                            p=p.description
+      div.w3-col.m2
+        div.w3-row-padding
+            div.w3-card.w3-round.w3-white 
+            if(data[2]!=null)
+              h4.w3-center Próximo evento
+              hr.w3-clear 
+              p=data[2].events[0].description
+              //treating date format... Getting day from a split
+              p Data : 
+                  =data[2].events[0].date.split('T')[0]
+              //treating date format... Getting hour then the minutes.
+              p Hora : 
+                  != data[2].events[0].date.split('T')[1].split(':')[0] +':'+ data[2].events[0].date.split('T')[1].split(':')[1]
   footer.w3-foote.w3
       address ISN Henrique e Maria
 

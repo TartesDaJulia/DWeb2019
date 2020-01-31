@@ -24,8 +24,6 @@ block content
                 div.w3-card.w3-round.w3-white
                     .w3-container
                         p
-                            a.w3-button.w3(href="/novapub" style="margin-left:50px") Criar uma publicação
-                        p
                             a.w3-button.w3(href="/eventos" style="margin-left:50px") Os meus eventos
                 br      
             div.w3-col.m7 
@@ -53,6 +51,7 @@ block content
                                     <option value="exam">Exames</option>
                                     <option value="sports">Desporto</option>
                                     <option value="classes">Aulas</option>
+                                    <option value="other">Outro </option>
                                 </select>
                                 br
                                 br
@@ -65,13 +64,17 @@ block content
                                 input.w3-input(type="submit" value="Publicar")
                         each p in data[1].posts
                                 each u in data[0].users
-                                    if u._id == p.postedBy
-                                        div.w3-container.w3-card.w3-white.w3-round.w3-margin
-                                            img(src="../avatar/"+u.fotoPath alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px")
-                                            span.w3-right.w3-opacity=p.datePosted.split('T')[0]+'       '+p.datePosted.split('T')[1].split(':')[0] +':'+ p.datePosted.split('T')[1].split(':')[1]
-                                            h4=u.username
-                                            hr.w3-clear
-                                            p=p.description
+                                        if u._id == p.postedBy
+                                            div.w3-container.w3-card.w3-white.w3-round.w3-margin
+                                                img(src="../avatar/"+u.fotoPath alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px")
+                                                span.w3-right.w3-opacity=p.datePosted.split('T')[0]+'       '+p.datePosted.split('T')[1].split(':')[0] +':'+ p.datePosted.split('T')[1].split(':')[1]
+                                                h3=p.title
+                                                h5=u.username
+                                                hr.w3-clear
+                                                p=p.description
+                                                each f in data[4].files
+                                                    if f.idDate==p.datePosted
+                                                        p=f.description
             div.w3-col.m2
                 div.w3-row-padding
                     a.w3-button.w3-green(href="/logout") Logout
