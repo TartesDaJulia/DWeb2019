@@ -11,7 +11,9 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-  Post.insere()
+  console.log("Inserindo post")
+  console.log(req.body)
+  Post.insere(req.body)
     .then(dados => res.jsonp(dados))
     .catch(e => res.status(500).jsonp(e))
 });

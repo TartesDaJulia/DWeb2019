@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+    <!-- Usado para fazer configurações : formatações de pagina, folhas de estilo, formato de texto, enconding (maneira como os caracteres estao codificados) -->
+    <head>
+        <meta charset = "UTF-8" />
+        <title> A minha primeira página </title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <!--1º coluna-->
+                <td with="30%" valign="top">
+                   <h3>Índice</h3>
+                   <ol>
+                       <!-- o # indica que o link esta contido na mesma pagina-->
+                       <li> <a href="#s1"> Primeira secção </a></li>
+                       <li> <a href="#listaCompras"> Lista de compras</a></li>
+                       <li> <a href="#mousse"> Como preparar uma musse de chocolate</a></li>
+                       <li> <a href="#sub2"> Lista de compras</a></li>
+                       <li> <a href="#listaCompras"> Segunda secção</a></li>
+                   </ol> 
+                </td>
+
+                <!--2ª coluna -->
+                <td>
+                    <h1 id="s1"> Primeira secção </h1>
+        
+                    <p>Eu sou o primeiro paragrafo</p>
+                       
+                    <p>E eu sou o segundo! </p>
+                    <p> Link para a <a href="http://miei.di.uminho.pt"> página de curso </a> . </p>
+                        
+                    <h3 id="listaCompras"> Lista de compras </h3>
+                    <!-- Lista -->
+                    <ul>
+                        <li> batatas;</li>
+                        <li> sumo de laranja:</li>
+                        <li> nozes.... </li>
+                    </ul>
+                
+                    <h3 id="mousse"> Como preparar uma musse de chocolate</h3>
+                    <!--Listas ordenadas -->
+                    <ol>
+                        <li> Separa as claras das gemas;</li>
+                        <li> Bater as claras em castelo...</li>
+                    </ol>
+                    <!--Dicionarios -->
+                    <dl>
+                        <dt>XML</dt>
+                        <dd>extende Markup Language</dd>
+                    </dl>
+                
+                    <h2> Primeira subsecção</h2>
+                
+                    <p> Kratos dominos </p>
+                    <img src="kratos.jpg" alt="kratos" width="50%" />
+                
+                    <h1 id="sub2"> Segunda secção</h1>
+                
+                    <table border="1">
+                    <!-- Primeira linha-->
+                        <tr> 
+                        <!--Linha de cabeçalho-->
+                            <th> Produto </th>
+                            <th> Quantidade </th>
+                        </tr>
+                        <tr> <td>Nabos</td> <td> 1</td></tr>
+                        <tr> <td>Tomates</td> <td> 1</td></tr>
+                        <tr> <td>Cenouras</td> <td> 3</td></tr>
+                        <tr> <td>Pepino</td> <td> 4</td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

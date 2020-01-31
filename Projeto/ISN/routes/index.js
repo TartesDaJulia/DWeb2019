@@ -16,7 +16,7 @@ var upload = multer({ dest: 'uploads/' })
 
 var sortByProperty = function (property) {
   return function (x, y) {
-      return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
+      return ((x[property] === y[property]) ? 0 : ((x[property] < y[property]) ? 1 : -1));
   };
 };
 
@@ -80,6 +80,7 @@ router.get('/login',verificaAutenticacao2, function(req, res, next) {
   })
     .catch(err => res.render('error',{erro: err}))
 });
+
 
 router.post('/login', passport.authenticate('local', 
   { successRedirect: '/main',
@@ -186,6 +187,9 @@ router.get('/profile/:id',verificaAutenticacao,(req,res) => {
 
 })
 
+router.get('/teste', function(req,res) {
+  res.render('filesTest')
+})
 
 router.post('/regi', upload.single('avatar'), function(req,res){
   //treat file upload
@@ -244,6 +248,56 @@ router.post('/updateProfile',verificaAutenticacao, (req,res) => {
     .then(res.redirect('/'))
     .catch(e => res.render('error', {error:e}))
 })
+
+router.post('/pubs',upload.array('ficheiro'),(req,res) => {
+  var data = new Date()
+  var uploadedBy = req.body.postedBy
+  var infos
+  console.log(uploadedBy)
+  if(req.files)
+  {
+    for(let i=0; i < req.files.length; i++){
+      req.files[i]["uploadedBy"] = uploadedBy
+      req.files[i]["idDate"] = data.toISOString()
+    }
+    console.log(req.files)
+    axios.post('http://localhost:3001/files',req.files)
+    .then(
+      dados => { infos=dados.data
+      console.log("infos a sair")
+    console.log(infos) }
+    )
+    .catch(e => res.render('error', {error:e}))
+  }
+  else{
+    console.log("Sem ficheiros...")
+    axios.post('http://localhost:3001/posts', {
+            title:       req.body.title,
+            description: req.body.description,
+            postedBy:    req.body.postedBy,
+            datePosted : data,
+            classifiers: [req.body.classifier],
+            audience:    req.body.audience
+      })
+      .then(res.redirect('/'))
+      .catch(e => res.render('error', {error:e}))
+  }
+  console.log("continuei")
+  //var publicacao = JSON.parse('{"title" : "'+req.body.title+',"file":"'+data.toISOString+'"'"'}')
+  axios.post('http://localhost:3001/posts', {
+      title:       req.body.title,
+      file:       data.toISOString(),
+      description: req.body.description,
+      postedBy:    req.body.postedBy,
+      datePosted : data,
+      classifiers: req.body.classifier,
+      audience:    req.body.audience,
+      
+    })
+    .then(res.redirect('/'))
+    .catch(e => res.render('error', {error:e}))
+})
+
 
 router.post('/massRegister', upload.single('registers'),(req,res) => {
 
