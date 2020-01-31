@@ -1,0 +1,6 @@
+Registers
+[
+  1 ( "user from grammar 1", "grammar1", "grammar1@mail.com", 2001-01-01,"1", "grammarcourse1", "grammarstudent" )
+  2 ( "user from grammar 2", "grammar2", "grammar2@mail.com", 2001-01-02,"2", "grammarcourse2", "grammarstudent" )
+  3 ( "user from grammar 4","grammar3", "grammar3@mail.com", 2001-01-03,"3", "grammarcourse3","grammarstudent" )
+]

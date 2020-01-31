@@ -1,4 +1,5 @@
 var User = require('../models/user')
+var bcrypt = require('bcryptjs')
 
 module.exports.list = () => {
     return User
@@ -51,6 +52,7 @@ module.exports.insert = user => {
 
 module.exports.insertMore = users => {
     console.log("Inserted many users!")
+
     return User.insertMany(users)
 }
 
@@ -58,7 +60,15 @@ module.exports.update = dados => {
     console.log(dados)
     console.log(dados.id)
     return User
-        .findOneAndUpdate({_id:dados.id}, {username:dados.username, type:dados.type, course:dados.course})
+        .findOneAndUpdate({_id:dados.id}, {username:dados.username, type:dados.type, course:dados.course,password:dados.password})
+        .exec()
+}
+
+module.exports.updateProfile = dados => {
+    console.log(dados)
+    console.log(dados.id)
+    return User
+        .findOneAndUpdate({_id:dados.id}, {username:dados.username, type:dados.type, course:dados.course,password:dados.password,mail:dados.mail,dateOfBirth:dados.dateOfBirth,name:dados.name})
         .exec()
 }
 

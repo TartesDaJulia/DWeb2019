@@ -2,34 +2,38 @@ extends layout
 
 block content
     h2 Detalhes utilizador @ ISN 
-    form(action="/update" method="post")
+    form(action="/updateProfile" method="post")
         table.w3-table-all
             tr
-                td ID
-                td=user._id
+                td 
+                td
                 td
                     input(type="text" name="_id" hidden value=user._id)
             tr
                 td Name
-                td=user.name
                 td
+                    input(type="text" name="name" value=user.name)
+                td
+                    
             tr
                 td Username
                 td
-                    input.w3-input(type="text" name="username" placeholder="Update username" value=user.username)
+                    input(type="text" name="username" value=user.username)
                 td
             tr
                 td Mail
-                td=user.mail
+                td
+                    input(type="text" name="mail"  value=user.mail)
                 td
             tr
                 td Password
                 td 
-                    input.w3-input(type="text" name="password" placeholder="Update password" )
+                    input(type="text" name="password" placeholder="Update password" )
                 td
             tr
                 td Date of Birth
-                td
+                td  
+                    input(type="text" name="dateOfBirth" value=user.dateOfBirth )
                 td
             tr
                 td Photo
@@ -39,12 +43,12 @@ block content
             tr
                 td Course
                 td
-                    input.w3-input(type="text" name="course" placeholder="Update course" value=user.course)
+                    input(type="text" name="course" placeholder="Update course" value=user.course)
                 td
             tr
                 td Type of user
                 td
-                    input.w3-input(type="text" name="type" placeholder="Update course" value=user.type)
+                    input(type="text" name="type" placeholder="Update type" value=user.type)
                 td
             tr
                 td
@@ -53,4 +57,4 @@ block content
                 td
 
     br
-    a.w3-button.w3-green(href="/dashboard") Go to dashboard
+    a.w3-button.w3-green(href="/main") Main Page

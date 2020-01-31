@@ -6,6 +6,7 @@ var User = require('../controllers/users')
 
 const fs = require('fs');
 var lineReader = require('line-reader');
+var bcrypt = require('bcryptjs')
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -56,6 +57,14 @@ router.post('/update', function(req,res,next) {
     .catch(e => res.status(500).jsonp(e))
 })
 
+
+router.post('/updateProfile', function(req,res,next) {
+  User.updateProfile(req.body)
+    .then(dados => res.jsonp(dados))
+    .catch(e => res.status(500).jsonp(e))
+})
+
+
 router.post('/', function(req, res, next) {
   User.insert(req.body)
     .then(dados => res.jsonp(dados))
@@ -80,10 +89,9 @@ router.get('/massRegister', function(req, res, next) {
     if (err) {
       console.error(err)
       return
-    }
+    } 
     console.log(data)
     fromFile=JSON.parse(data)
-
     fs.unlink(path, function(err,data) {
       if (err) {
         console.error(err)
@@ -92,6 +100,7 @@ router.get('/massRegister', function(req, res, next) {
       console.log("unlinked")
       console.log(data)
     })
+    
     User.insertMore(fromFile.registers)
     .then(dados => {
       res.jsonp(dados)
@@ -107,6 +116,5 @@ router.get('/massRegister', function(req, res, next) {
 const sleep = (milliseconds) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
-
 
 module.exports = router;

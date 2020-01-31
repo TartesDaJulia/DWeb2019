@@ -33,17 +33,15 @@ router.get('/',verificaAutenticacao2, function(req, res, next) {
     events=JSON.stringify(events)
     if(events!="[]" && posts!="[]") 
     {
-      console.log("events e posts")
-      console.log(events)
+
       var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"events\":"+events+"}]")
       data[1].posts.sort(sortByProperty('datePosted'))
       data[2].events.sort(sortByProperty('date'))
       res.render("index", {data:data})
     }
     else if(posts != "[]"){
-      console.log("just posts")
       var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"}]")
-      console.log(JSON.stringify(data))
+
       data[1].posts.sort(sortByProperty('datePosted'))
     }
     else {
@@ -66,17 +64,13 @@ router.get('/login',verificaAutenticacao2, function(req, res, next) {
     events=JSON.stringify(events)
     if(events!="[]" && posts!="[]") 
     {
-      console.log("events e posts")
-      console.log(events)
       var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"events\":"+events+"}]")
       data[1].posts.sort(sortByProperty('datePosted'))
       data[2].events.sort(sortByProperty('date'))
       res.render("index", {data:data})
     }
     else if(posts != "[]"){
-      console.log("just posts")
       var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"}]")
-      console.log(JSON.stringify(data))
       data[1].posts.sort(sortByProperty('datePosted'))
     }
     else {
@@ -185,6 +179,13 @@ router.get('/details/:id',verificaAutenticacao,(req,res) => {
   }
 })
 
+router.get('/profile/:id',verificaAutenticacao,(req,res) => {
+  axios.get("http://localhost:3001/users/id/"+req.params.id)
+      .then(dados => res.render('profile', {user:dados.data}))  
+      .catch(e => res.render('error', {error:e}))
+
+})
+
 
 router.post('/regi', upload.single('avatar'), function(req,res){
   //treat file upload
@@ -226,9 +227,20 @@ router.post('/regi', upload.single('avatar'), function(req,res){
 
 
 router.post('/update',verificaAutenticacao, (req,res) => {
-  var dados = '{"id": "'+req.body._id+'","username":"'+req.body.username+'", "type" : "'+req.body.type+'", "course":"'+req.body.course+'"}'
+  var hash = bcrypt.hashSync(req.body.password, 10);
+  var dados = '{"id": "'+req.body._id+'","username":"'+req.body.username+'", "password" : "'+ hash +'", "type" : "'+req.body.type+'", "course":"'+req.body.course+'"}'
   data=JSON.parse(dados)
   axios.post("http://localhost:3001/users/update",data)
+    .then(res.redirect('/'))
+    .catch(e => res.render('error', {error:e}))
+})
+
+
+router.post('/updateProfile',verificaAutenticacao, (req,res) => {
+  var hash = bcrypt.hashSync(req.body.password, 10);
+  var dados = '{"id": "'+req.body._id+'","name":"'+req.body.name+'","username":"'+req.body.username+'", "password" : "'+ hash +'","mail":"'+req.body.mail+'","dateOfBirth":"'+req.body.dateOfBirth+'", "type" : "'+req.body.type+'", "course":"'+req.body.course+'"}'
+  data=JSON.parse(dados)
+  axios.post("http://localhost:3001/users/updateProfile",data)
     .then(res.redirect('/'))
     .catch(e => res.render('error', {error:e}))
 })
@@ -237,6 +249,7 @@ router.post('/massRegister', upload.single('registers'),(req,res) => {
 
   let oldPath = __dirname + '/../' + req.file.path
   let newPath = __dirname + '/../../API/fileToParse/registers.txt' 
+
 
   fs.rename(oldPath,newPath,function(err) {
     if(err) throw err

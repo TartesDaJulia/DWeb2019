@@ -19,6 +19,7 @@ block content
                         p
                             i(class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme")= data[3].loggedUser.type.charAt(0).toUpperCase() + data[3].loggedUser.type.slice(1)
                             //This code gets the 1st letter and capitalizes it...
+                        a.w3-button.w3-green(href="/profile/"+data[3].loggedUser._id) Perfil
                 br
                 div.w3-card.w3-round.w3-white
                     .w3-container
