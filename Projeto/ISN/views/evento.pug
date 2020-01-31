@@ -4,93 +4,53 @@ block content
     div.w3-container.w3-content(style="max-width:1400px;margin-top:80px")
         div.w3-row
             div.w3-col.m3 
-                div.w3-card.w3-round.w3-white
+                div.w3-card.w3-round.w3-green
                     .w3-container
                         h4.w3-center O meu perfil
                         p.w3-center
-                            img(src="../avatar/"+data[2].loggedUser.fotoPath class="w3-circle" style="height:106px;width:106px" alt="Avatar")
+                            img(src="../avatar/"+data[3].loggedUser.fotoPath class="w3-circle" style="height:106px;width:106px" alt="Avatar")
                         hr
                         p
-                            i(class="fa fa-pencil fa-fw w3-margin-right w3-text-theme")= data[2].loggedUser.username
+                            i(class="fa fa-pencil fa-fw w3-margin-right w3-text-theme")= data[3].loggedUser.username
                             //data[2].loggedUser to get current user data...
                             
                         p
-                            i(class="fa fa-home fa-fw w3-margin-right w3-text-theme")= data[2].loggedUser.course
+                            i(class="fa fa-home fa-fw w3-margin-right w3-text-theme")= data[3].loggedUser.course
                         p
-                            i(class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme")= data[2].loggedUser.type.charAt(0).toUpperCase() + data[2].loggedUser.type.slice(1)
+                            i(class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme")= data[3].loggedUser.type.charAt(0).toUpperCase() + data[3].loggedUser.type.slice(1)
                             //This code gets the 1st letter and capitalizes it...
                 br
                 div.w3-card.w3-round.w3-white
                     .w3-container
                         p
-                            a.w3-button.w3(href="/main" style="margin-left:50px") As minhas publicações
+                            a.w3-button.w3(href="/novoevento" style="margin-left:50px") Criar um evento
                         p
-                            a.w3-button.w3(href="/eventos" style="margin-left:50px") Os meus eventos
-                br
-                div.w3-card.w3-round.w3-white
-                    .w3-container 
-                            <span class="w3-tag w3-small w3-theme-l5">Photos</span>         
+                            a.w3-button.w3(href="/main" style="margin-left:50px") As minhas publicações
+                br      
             div.w3-col.m7 
                 div.w3-row-padding
                     div.w3-col.m12
-                        div.w3-card.w3-round.w3-white
-                           form.w3-container(action='/pubs' method='post')
-                            .w3-container(id='lista')
-                                .w3-container(id='f1')
-                            h2 Adicione um Evento
-                                h6.w3-opacity 
-                                h5 Título
-                                input(contenteditable="true" class="w3-border w3-padding" type='text' name='title' style='width:100%; height:30px') 
-                                br
-                                h5 Descrição
-                                input(contenteditable="true" class="w3-border w3-padding" type='text' name='description' style='width:100%; height:100px') 
-                                h5 Privado
-                                input(contenteditable="true" class="w3-border w3-padding" type='checkbox' name='audience' style='height:40px') 
-                                br
-                                h5 Data do Evento
-                                input(contenteditable="true" class="w3-border w3-padding" type='date' name='date' style='height:40px') 
-                                br
-                                h5 Localização
-                                input(contenteditable="true" class="w3-border w3-padding" type='text' name='location' style='width:100%; height:50px') 
-                                br
-                                h5 Tipo de Evento
-                                input(contenteditable="true" class="w3-border w3-padding" type='text' name='type' style='width:100%; height:40px') 
-                                br
-                                br
-                                label.w3-cell Inserir ficheiro
-                                input.w3-input.w3-cell(type="file" name="fileSchema" style='margin-top: 10px')
-                                br
-                                button.w3-button.w3-round-large.w3(id='mais1') Adicionar mais ficheiros
-                                br
-                                br
-                                br
-                                button(type="input" class="w3-button w3-theme" style='margin-left:300px').w3-green Publicar
-                                br
-                                br
-                        each p in data[1].posts
-                                each u in data[0].users
-                                    if u.id == p.postedBy
-                                        div.w3-container.w3-card.w3-white.w3-round.w3-margin
-                                            img(src="../avatar/"+u.fotoPath alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px")
-                                            span.w3-right.w3-opacity=p.datePosted.split('T')[0]+'       '+p.datePosted.split('T')[1].split(':')[0] +':'+ p.datePosted.split('T')[1].split(':')[1]
-                                            h4=u.username
-                                            hr.w3-clear
-                                            p=p.description
-                        br
-                        div.w3-card.w3-round.w3-white
-                            div.w3-container.w3-padding
+                            br
+                    each p in data[2].events
+                            each u in data[0].users
+                                if u.id == p.postedBy
+                                    div.w3-container.w3-card.w3-white.w3-round.w3-margin
+                                        span.w3-right.w3-opacity=p.datePosted.split('T')[0]+'       '+p.datePosted.split('T')[1].split(':')[0] +':'+ p.datePosted.split('T')[1].split(':')[1]
+                                        h4=u.username
+                                        hr.w3-clear
+                                        p=p.description
             div.w3-col.m2
                 div.w3-row-padding
-                    a.w3-button.w3-green(href="/logout" style="margin-left:50px") Logout
+                    a.w3-button.w3-green(href="/logout") Logout
                     div.w3-card.w3-round.w3-white
-                            h4.w3-center Próximo evento
+                            h4.w3-center(style="color:green") Próximo evento
                             hr.w3-clear 
-                            //p=data[1].posts[0].event.description
-                            ////treating date format... Getting day from a split
-                            //p Data : 
-                            //    =data[1].posts[0].event.date.split('T')[0]
-                            ////treating date format... Getting hour then the minutes.
-                            //p Hora : 
-                            //    != data[1].posts[0].event.date.split('T')[1].split(':')[0] +':'+ data[1].posts[0].event.date.split('T')[1].split(':')[1]
+                            p=data[2].events[0].description
+                            //treating date format... Getting day from a split
+                            p Data : 
+                                =data[2].events[0].date.split('T')[0]
+                            //treating date format... Getting hour then the minutes.
+                            p Hora : 
+                                != data[2].events[0].date.split('T')[1].split(':')[0] +':'+ data[2].events[0].date.split('T')[1].split(':')[1]
                                 
                                 
