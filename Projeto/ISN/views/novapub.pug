@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    div.w3-container.w3-content(style="max-width:1400px;margin-top:70px")
+    div.w3-container.w3-content(style="max-width:1400px;margin-top:80px")
         div.w3-row
             div.w3-col.m3 
                 div.w3-card.w3-round.w3-green
@@ -19,12 +19,11 @@ block content
                         p
                             i(class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme")= data[3].loggedUser.type.charAt(0).toUpperCase() + data[3].loggedUser.type.slice(1)
                             //This code gets the 1st letter and capitalizes it...
-                        a.w3-button.w3-white(href="/profile/"+data[3].loggedUser._id) Perfil
                 br
                 div.w3-card.w3-round.w3-white
                     .w3-container
                         p
-                            a.w3-button.w3(href="/novapub" style="margin-left:50px") Criar uma publicação
+                            a.w3-button.w3(href="/main" style="margin-left:50px") Ver publicações
                         p
                             a.w3-button.w3(href="/eventos" style="margin-left:50px") Os meus eventos
                 br      
@@ -32,46 +31,37 @@ block content
                 div.w3-row-padding
                     div.w3-col.m12
                         div.w3-card.w3-round.w3-white
+                           form.w3-container(action='/pubs' method='post')
                             h2 Adicione uma publicação
-                            form.w3-container(action='/pubs' method='post' enctype="multipart/form-data")
                                 h6.w3-opacity 
                                 h5 Título
                                 input(contenteditable="true" class="w3-border w3-padding" type='text' name='title' style='width:100%; height:30px') 
                                 br
                                 h5 Descrição
                                 input(contenteditable="true" class="w3-border w3-padding" type='text' name='description' style='width:100%; height:100px') 
-                                input(hidden name ='postedBy' value=data[3].loggedUser._id)
-                                h5 Quem pode ver a sua publicacao:
-                                <select name="audience"> 
-                                    <option value="public">public</option>
-                                    <option value="students">students</option>
-                                    <option value="teachers">teachers</option>
-                                </select>
+                                h5 Se pretende que a publicação seja privada:
+                                input(contenteditable="true" class="w3-border w3-padding" type='checkbox' name='audience' style='height:40px') 
+                                br
                                 br
                                 h5 Classificação
-                                <select name="classifier">
-                                    <option value="exam">Exames</option>
-                                    <option value="sports">Desporto</option>
-                                    <option value="classes">Aulas</option>
+                                <select id="classifiers"> 
+                                    <option value=""></option>
+                                    <option value="scs">Exames</option>
+                                    <option value="sa">Desporto</option>
+                                    <option value="sbc">Escola</option>
                                 </select>
                                 br
                                 br
-                                .w3-container(id='lista')
-                                    .w3-container(id='f1')
-                                        .w3-cell-row
-                                             label.w3-cell Ficheiro:
-                                             input.w3-input.w3-cell(type="file" name="ficheiro")
-                                    button.w3-button.w3-round.w3-green(type="button" id='mais1') Mais Ficheiros
-                                input.w3-input(type="submit" value="Publicar")
-                        each p in data[1].posts
-                                each u in data[0].users
-                                    if u._id == p.postedBy
-                                        div.w3-container.w3-card.w3-white.w3-round.w3-margin
-                                            img(src="../avatar/"+u.fotoPath alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px")
-                                            span.w3-right.w3-opacity=p.datePosted.split('T')[0]+'       '+p.datePosted.split('T')[1].split(':')[0] +':'+ p.datePosted.split('T')[1].split(':')[1]
-                                            h4=u.username
-                                            hr.w3-clear
-                                            p=p.description
+                                label.w3-cell Inserir ficheiro
+                                input.w3-input.w3-cell(type="file" name="files" style='margin-top: 10px')
+                                br
+                                button.w3-button.w3-round-large.w3(id='mais1') Adicionar mais ficheiros
+                                br
+                                br
+                                br
+                                button(type="input" class="w3-button w3-theme" style='margin-left:300px').w3-green Publicar
+                                br
+                                br
             div.w3-col.m2
                 div.w3-row-padding
                     a.w3-button.w3-green(href="/logout") Logout
@@ -85,7 +75,3 @@ block content
                             //treating date format... Getting hour then the minutes.
                             p Hora : 
                                 != data[2].events[0].date.split('T')[1].split(':')[0] +':'+ data[2].events[0].date.split('T')[1].split(':')[1]
-                                
-
-                            
-                            

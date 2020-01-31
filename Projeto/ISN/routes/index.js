@@ -139,11 +139,13 @@ router.get('/eventos',verificaAutenticacao, (req, res) => {
   else{
     Promise.all([
       get(`http://localhost:3001/users`),
+      get(`http://localhost:3001/posts`),
       get(`http://localhost:3001/events`)
-    ]).then(([users, posts]) =>{
+    ]).then(([users, posts,events]) =>{
       users=JSON.stringify(users)
       posts=JSON.stringify(posts)
-      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"loggedUser\":"+user+"}]")
+      events=JSON.stringify(events)
+      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"events\":"+events+"},{\"loggedUser\":"+user+"}]")
       data[1].posts.sort(sortByProperty('datePosted'))
       res.render('evento',{data})
     })
@@ -151,8 +153,70 @@ router.get('/eventos',verificaAutenticacao, (req, res) => {
   }
 })
 
+router.get('/novapub',verificaAutenticacao, (req, res) => {
+  var user = JSON.stringify(req.user)
+  console.log(JSON.stringify(req.user.type))
+  console.log(JSON.stringify(req.user.type) == "\"admin\"")
+  if(JSON.stringify(req.user.type) == "\"admin\"")
+  {
+    axios.get("http://localhost:3001/users")
+    .then(dados => res.render('dashboard', {dados:dados.data}))
+    .catch(e => res.render('error', {error: e}))
+  }
+  else{
+    Promise.all([
+      get(`http://localhost:3001/users`),
+      get(`http://localhost:3001/posts`),
+      get(`http://localhost:3001/events`)
+    ]).then(([users, posts,events]) =>{
+      users=JSON.stringify(users)
+      posts=JSON.stringify(posts)
+      events=JSON.stringify(events)
+      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"events\":"+events+"},{\"loggedUser\":"+user+"}]")
+      data[1].posts.sort(sortByProperty('datePosted'))
+      res.render('novapub',{data})
+    })
+      .catch(err => res.render('error',{erro: err}))
+  }
+})
+
+router.get('/novoevento',verificaAutenticacao, (req, res) => {
+  var user = JSON.stringify(req.user)
+  console.log(JSON.stringify(req.user.type))
+  console.log(JSON.stringify(req.user.type) == "\"admin\"")
+  if(JSON.stringify(req.user.type) == "\"admin\"")
+  {
+    axios.get("http://localhost:3001/users")
+    .then(dados => res.render('dashboard', {dados:dados.data}))
+    .catch(e => res.render('error', {error: e}))
+  }
+  else{
+    Promise.all([
+      get(`http://localhost:3001/users`),
+      get(`http://localhost:3001/posts`),
+      get(`http://localhost:3001/events`)
+    ]).then(([users, posts,events]) =>{
+      users=JSON.stringify(users)
+      posts=JSON.stringify(posts)
+      events=JSON.stringify(events)
+      var data = JSON.parse("[{\"users\":"+users+"},{\"posts\":"+posts+"},{\"events\":"+events+"},{\"loggedUser\":"+user+"}]")
+      data[1].posts.sort(sortByProperty('datePosted'))
+      res.render('novoevento',{data})
+    })
+      .catch(err => res.render('error',{erro: err}))
+  }
+})
+
 router.get('/register', (req, res) => {
     res.render('register')
+  })
+
+  router.get('/novapub', (req, res) => {
+    res.render('novapub')
+  })
+
+  router.get('/novoevento', (req, res) => {
+    res.render('novoevento')
   })
 
   router.get('/eventos', (req, res) => {
